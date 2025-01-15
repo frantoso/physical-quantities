@@ -12,7 +12,7 @@ object Program {
      * @param args Command line arguments (not used).
      */
     @JvmStatic
-    fun main(args: Array<String>) {
+    fun main(args:   Array<String>) {
         println("this is a lib only")
     }
 }

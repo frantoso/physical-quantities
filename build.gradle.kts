@@ -7,7 +7,7 @@ plugins {
     id("com.gradleup.shadow") version "8.3.5"
 }
 
-group = "de.franklisting.physical_units"
+group = "de.franklisting.physicalquantities"
 version = "1.0-SNAPSHOT"
 
 repositories {
@@ -21,7 +21,7 @@ dependencies {
 }
 
 application {
-    mainClass.set("de.franklisting.physical_units.Program")
+    mainClass.set("de.franklisting.physicalquantities.Program")
 }
 
 tasks.test {
@@ -39,5 +39,5 @@ koverReport {
 }
 
 kotlin {
-    jvmToolchain(18)
+    jvmToolchain(21)
 }

@@ -31,7 +31,7 @@ class UnitBaseTest {
         listOf(
             TestBaseUnit(42.0) to 42.0.hashCode(),
             TestBaseUnit(2.0) to 2.0.hashCode(),
-            OtherTestBaseUnit(42.0) to 42.0.hashCode(),
+            OtherTestBaseUnit(42.0) to 423.0.hashCode(),
         ).mapIndexed { index, (value, expected) ->
             DynamicTest.dynamicTest("${"%02d".format(index)} - hash code is $expected") {
                 assertThat(value.hashCode()).isEqualTo(expected)

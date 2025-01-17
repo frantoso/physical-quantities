@@ -1,7 +1,7 @@
 plugins {
     kotlin("jvm") version "2.0.21"
     application
-    id("org.jmailen.kotlinter") version "4.3.0"
+    id("org.jmailen.kotlinter") version "5.0.1"
 
     id("org.jetbrains.kotlinx.kover") version "0.7.5"
     id("com.gradleup.shadow") version "8.3.5"

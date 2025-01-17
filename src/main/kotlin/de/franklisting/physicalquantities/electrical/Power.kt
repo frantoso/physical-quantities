@@ -6,7 +6,10 @@ import de.franklisting.physicalquantities.core.SimpleUnit
  * A class to hold a type and unit safe power value in Watt (W).
  * @param value The raw value.
  */
-class Power private constructor(value: Number) : SimpleUnit<Power, Power>(value), Comparable<Power> {
+class Power private constructor(
+    value: Number,
+) : SimpleUnit<Power, Power>(value),
+    Comparable<Power> {
     /**
      * Gets the raw value in Watt (w).
      */

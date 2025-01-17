@@ -3,13 +3,19 @@ package de.franklisting.physicalquantities.core
 import org.assertj.core.api.Assertions.assertThat
 import kotlin.test.Test
 
-class TestUnit(value: Number) : SimpleUnit<TestUnit, TestUnit>(value.toDouble()) {
+class TestUnit(
+    value: Number,
+) : SimpleUnit<TestUnit, TestUnit>(value.toDouble()) {
     override fun createFromValue(value: Number): TestUnit = TestUnit(value.toDouble())
 }
 
-class TestDiff(value: Number) : UnitBase(value.toDouble())
+class TestDiff(
+    value: Number,
+) : UnitBase(value.toDouble())
 
-class TestUnitWithDiff(value: Number) : SimpleUnit<TestUnitWithDiff, TestDiff>(value.toDouble()) {
+class TestUnitWithDiff(
+    value: Number,
+) : SimpleUnit<TestUnitWithDiff, TestDiff>(value.toDouble()) {
     override fun createFromValue(value: Number): TestUnitWithDiff = TestUnitWithDiff(value.toDouble())
 }
 

@@ -6,7 +6,10 @@ import de.franklisting.physicalquantities.core.SimpleUnit
  * A class to hold a type and unit safe current value in Ampere (A).
  * @param value The raw value.
  */
-class Current private constructor(value: Number) : SimpleUnit<Current, Current>(value), Comparable<Current> {
+class Current private constructor(
+    value: Number,
+) : SimpleUnit<Current, Current>(value),
+    Comparable<Current> {
     /**
      * Gets the raw value in Ampere (A).
      */

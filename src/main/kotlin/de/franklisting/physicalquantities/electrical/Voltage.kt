@@ -6,7 +6,9 @@ import de.franklisting.physicalquantities.core.SimpleUnit
  * A class to hold a type and unit safe voltage value in Volt (V).
  * @param value The raw value.
  */
-class Voltage private constructor(value: Number) : SimpleUnit<Voltage, Voltage>(value) {
+class Voltage private constructor(
+    value: Number,
+) : SimpleUnit<Voltage, Voltage>(value) {
     /**
      * Gets the raw value in Volt (V).
      */

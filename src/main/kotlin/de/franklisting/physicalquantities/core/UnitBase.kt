@@ -6,7 +6,9 @@ import kotlin.math.sign
  * Base class for units.
  * @param value The raw value to store in this unit instance. This raw values unit is the reference unit.
  */
-abstract class UnitBase protected constructor(internal val value: Double) {
+abstract class UnitBase protected constructor(
+    internal val value: Double,
+) {
     /**
      * Indicates whether two units are equal.
      * @param other The other instance to compare with this instance.

@@ -5,9 +5,13 @@ import org.junit.jupiter.api.DynamicTest
 import org.junit.jupiter.api.TestFactory
 import kotlin.test.Test
 
-class TestBaseUnit(value: Number) : UnitBase(value.toDouble())
+class TestBaseUnit(
+    value: Number,
+) : UnitBase(value.toDouble())
 
-class OtherTestBaseUnit(value: Double) : UnitBase(value)
+class OtherTestBaseUnit(
+    value: Double,
+) : UnitBase(value)
 
 class UnitBaseTest {
     @TestFactory

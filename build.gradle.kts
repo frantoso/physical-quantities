@@ -6,6 +6,7 @@ plugins {
     id("com.vanniktech.maven.publish") version "0.30.0"
     id("org.jmailen.kotlinter") version "5.0.1"
     id("org.jetbrains.kotlinx.kover") version "0.7.5"
+    id("org.jetbrains.dokka") version "2.0.0"
 }
 
 dependencies {
@@ -28,11 +29,11 @@ tasks.test {
     finalizedBy("koverHtmlReport")
 }
 
-koverReport {
-    filters {
-        excludes {
-            classes("io.github.franklisting65.physicalquantities.Program")
-        }
+dokka {
+    basePublicationsDirectory.set(layout.buildDirectory.dir("docs"))
+
+    dokkaPublications.html {
+        outputDirectory.set(layout.buildDirectory.dir("docs/javadoc"))
     }
 }
 

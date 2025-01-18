@@ -1,4 +1,4 @@
-package de.franklisting.physicalquantities.electrical
+package io.github.franklisting65.physicalquantities.electrical
 
 // **** Power related calculations
 

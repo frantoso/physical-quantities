@@ -1,4 +1,4 @@
-package de.franklisting.physicalquantities.electrical
+package io.github.franklisting65.physicalquantities.electrical
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DynamicTest

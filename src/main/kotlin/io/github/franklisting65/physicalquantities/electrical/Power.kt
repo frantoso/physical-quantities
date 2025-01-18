@@ -1,6 +1,6 @@
-package de.franklisting.physicalquantities.electrical
+package io.github.franklisting65.physicalquantities.electrical
 
-import de.franklisting.physicalquantities.core.SimpleUnit
+import io.github.franklisting65.physicalquantities.core.SimpleUnit
 
 /**
  * A class to hold a type and unit safe power value in Watt (W).

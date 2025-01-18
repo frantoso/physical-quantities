@@ -1,4 +1,4 @@
-package de.franklisting.physicalquantities.core
+package io.github.franklisting65.physicalquantities.core
 
 import kotlin.math.roundToInt
 

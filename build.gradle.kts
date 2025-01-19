@@ -2,7 +2,7 @@ import com.vanniktech.maven.publish.SonatypeHost
 
 plugins {
     java
-    kotlin("jvm") version "2.0.21"
+    kotlin("jvm") version "2.1.0"
     id("com.vanniktech.maven.publish") version "0.30.0"
     id("org.jmailen.kotlinter") version "5.0.1"
     id("org.jetbrains.kotlinx.kover") version "0.7.5"
@@ -37,11 +37,12 @@ dokka {
     }
 }
 
+version = "0.1.0"
+
 mavenPublishing {
     coordinates(
         groupId = "io.github.franklisting65",
         artifactId = "physical-quantities",
-        version = "0.1.0",
     )
 
     // Configure POM metadata for the published artifact

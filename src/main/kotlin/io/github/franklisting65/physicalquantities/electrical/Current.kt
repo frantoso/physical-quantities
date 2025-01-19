@@ -1,6 +1,8 @@
 package io.github.franklisting65.physicalquantities.electrical
 
-import io.github.franklisting65.physicalquantities.core.SimpleUnit
+import io.github.franklisting65.physicalquantities.core.ScaledQuantity
+import io.github.franklisting65.physicalquantities.core.SimpleQuantity
+import io.github.franklisting65.physicalquantities.core.valueWithUnit
 
 /**
  * A class to hold a type and unit safe current value in Ampere (A).
@@ -8,7 +10,7 @@ import io.github.franklisting65.physicalquantities.core.SimpleUnit
  */
 class Current private constructor(
     value: Number,
-) : SimpleUnit<Current, Current>(value),
+) : SimpleQuantity<Current, Current>(value),
     Comparable<Current> {
     /**
      * Gets the raw value in Ampere (A).
@@ -38,3 +40,13 @@ class Current private constructor(
  */
 val Number.A: Current
     get() = Current.fromAmpere(this)
+
+/**
+ * Creates a pair of a value and associated unit from a scaled current quantity and 'A'.
+ */
+val ScaledQuantity<Current>.A get() = valueWithUnit(this, "A")
+
+/**
+ * Creates a pair of a value and associated unit from a scaled current quantity and 'A'.
+ */
+val Current.A get() = this.valueWithUnit("A")

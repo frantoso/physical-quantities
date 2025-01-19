@@ -1,6 +1,8 @@
 package io.github.franklisting65.physicalquantities.electrical
 
-import io.github.franklisting65.physicalquantities.core.SimpleUnit
+import io.github.franklisting65.physicalquantities.core.ScaledQuantity
+import io.github.franklisting65.physicalquantities.core.SimpleQuantity
+import io.github.franklisting65.physicalquantities.core.valueWithUnit
 
 /**
  * A class to hold a type and unit safe voltage value in Volt (V).
@@ -8,7 +10,7 @@ import io.github.franklisting65.physicalquantities.core.SimpleUnit
  */
 class Voltage private constructor(
     value: Number,
-) : SimpleUnit<Voltage, Voltage>(value) {
+) : SimpleQuantity<Voltage, Voltage>(value) {
     /**
      * Gets the raw value in Volt (V).
      */
@@ -37,3 +39,8 @@ class Voltage private constructor(
  */
 val Number.V: Voltage
     get() = Voltage.fromVolt(this)
+
+/**
+ * Creates a pair of a value and associated unit from a scaled voltage quantity and 'V'.
+ */
+val ScaledQuantity<Voltage>.V get() = valueWithUnit(this, "V")

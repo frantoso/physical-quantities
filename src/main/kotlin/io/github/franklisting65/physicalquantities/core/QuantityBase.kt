@@ -3,18 +3,19 @@ package io.github.franklisting65.physicalquantities.core
 import kotlin.math.sign
 
 /**
- * Base class for units.
+ * Base class for quantities.
  *
- * @property value The raw value to store in this instance. Raw values unit is the reference unit.
- * @constructor Initializes a new instance of the [UnitBase] class.
+ * @property value The raw value to store in this instance. Raw values unit is the reference unit of the quantity.
+ * @constructor Initializes a new instance of the [QuantityBase] class.
  */
-abstract class UnitBase protected constructor(
+abstract class QuantityBase protected constructor(
     internal val value: Double,
 ) {
     /**
-     * Returns `true` if this unit is equal to [other]; `false` otherwise.
+     * Returns `true` if this instance is equal to [other]; `false` otherwise.
      */
-    override fun equals(other: Any?): Boolean = (other != null) && (this::class == other::class) && value.equals((other as UnitBase).value)
+    override fun equals(other: Any?): Boolean =
+        (other != null) && (this::class == other::class) && value.equals((other as QuantityBase).value)
 
     /**
      * Returns a hash code value for the object.

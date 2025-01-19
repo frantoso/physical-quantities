@@ -7,13 +7,13 @@ import kotlin.test.Test
 
 class TestBaseUnit(
     value: Number,
-) : UnitBase(value.toDouble())
+) : QuantityBase(value.toDouble())
 
 class OtherTestBaseUnit(
     value: Double,
-) : UnitBase(value)
+) : QuantityBase(value)
 
-class UnitBaseTest {
+class QuantityBaseTest {
     @TestFactory
     fun `test equals`() =
         listOf(

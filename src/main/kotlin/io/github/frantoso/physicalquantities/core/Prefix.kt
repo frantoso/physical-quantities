@@ -1,8 +1,10 @@
 package io.github.frantoso.physicalquantities.core
 
-// @formatter:off
-@Suppress("ktlint")
-enum class Prefix( val symbol: String, val factorToBase: Double, val factorFromBase: Double ) {
+enum class Prefix(
+    val symbol: String,
+    val factorToBase: Double,
+    val factorFromBase: Double,
+) {
     ATTO("a", 1e-18, 1e18),
     FEMTO("f", 1e-15, 1e15),
     PICO("p", 1e-12, 1e12),
@@ -20,4 +22,3 @@ enum class Prefix( val symbol: String, val factorToBase: Double, val factorFromB
     PETA("P", 1e15, 1e-15),
     EXA("E", 1e18, 1e-18),
 }
-// @formatter:on

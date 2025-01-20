@@ -13,7 +13,7 @@ class Power private constructor(
 ) : SimpleQuantity<Power, Power>(value),
     Comparable<Power> {
     /**
-     * Gets the raw value in Watt (w).
+     * Gets the raw value in Watt (W).
      */
     val watt: Double
         get() = value
@@ -45,3 +45,8 @@ val Number.W: Power
  * Creates a pair of a value and associated unit from a scaled power quantity and 'W'.
  */
 val ScaledQuantity<Power>.W get() = valueWithUnit(this, "W")
+
+/**
+ * Creates a pair of a value and associated unit from a non-scaled power quantity and 'W'.
+ */
+val Power.W get() = this.valueWithUnit("W")

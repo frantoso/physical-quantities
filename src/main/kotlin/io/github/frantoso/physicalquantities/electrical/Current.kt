@@ -47,6 +47,6 @@ val Number.A: Current
 val ScaledQuantity<Current>.A get() = valueWithUnit(this, "A")
 
 /**
- * Creates a pair of a value and associated unit from a scaled current quantity and 'A'.
+ * Creates a pair of a value and associated unit from a non-scaled current quantity and 'A'.
  */
 val Current.A get() = this.valueWithUnit("A")

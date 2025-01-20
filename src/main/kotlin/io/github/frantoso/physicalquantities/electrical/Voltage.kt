@@ -44,3 +44,8 @@ val Number.V: Voltage
  * Creates a pair of a value and associated unit from a scaled voltage quantity and 'V'.
  */
 val ScaledQuantity<Voltage>.V get() = valueWithUnit(this, "V")
+
+/**
+ * Creates a pair of a value and associated unit from a non-scaled voltage quantity and 'V'.
+ */
+val Voltage.V get() = valueWithUnit("V")

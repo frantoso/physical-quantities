@@ -1,4 +1,4 @@
-package io.github.franklisting65.physicalquantities.core
+package io.github.frantoso.physicalquantities.core
 
 /**
  * A helper class to store the data needed for a scaling. Normally used by a prefix (e.g. 'k').

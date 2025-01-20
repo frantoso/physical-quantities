@@ -1,4 +1,4 @@
-package io.github.franklisting65.physicalquantities.core
+package io.github.frantoso.physicalquantities.core
 
 /**
  * A helper class used to store a value together with a unit. This is normally the result of a scale and

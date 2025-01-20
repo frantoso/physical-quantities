@@ -1,4 +1,4 @@
-package io.github.franklisting65.physicalquantities.core
+package io.github.frantoso.physicalquantities.core
 
 import org.assertj.core.api.Assertions.assertThat
 import kotlin.test.Test

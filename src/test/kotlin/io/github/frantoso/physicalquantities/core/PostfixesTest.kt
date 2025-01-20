@@ -1,6 +1,6 @@
-package io.github.franklisting65.physicalquantities.core
+package io.github.frantoso.physicalquantities.core
 
-import io.github.franklisting65.physicalquantities.electrical.A
+import io.github.frantoso.physicalquantities.electrical.A
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.data.Offset
 import org.junit.jupiter.api.DynamicTest

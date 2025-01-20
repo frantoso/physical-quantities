@@ -1,4 +1,4 @@
-package io.github.franklisting65.physicalquantities.core
+package io.github.frantoso.physicalquantities.core
 
 // @formatter:off
 @Suppress("ktlint")

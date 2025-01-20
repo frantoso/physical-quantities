@@ -1,6 +1,6 @@
 @file:Suppress("ktlint:standard:backing-property-naming", "ObjectPropertyName", "NonAsciiCharacters")
 
-package io.github.franklisting65.physicalquantities.core
+package io.github.frantoso.physicalquantities.core
 
 val Number.atto get() = this.toDouble() * Prefix.ATTO.factorToBase
 val Number.femto get() = this.toDouble() * Prefix.FEMTO.factorToBase

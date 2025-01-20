@@ -1,9 +1,9 @@
-package io.github.franklisting65.physicalquantities.core
+package io.github.frantoso.physicalquantities.core
 
-import io.github.franklisting65.physicalquantities.electrical.Power
-import io.github.franklisting65.physicalquantities.electrical.V
-import io.github.franklisting65.physicalquantities.electrical.Voltage
-import io.github.franklisting65.physicalquantities.electrical.W
+import io.github.frantoso.physicalquantities.electrical.Power
+import io.github.frantoso.physicalquantities.electrical.V
+import io.github.frantoso.physicalquantities.electrical.Voltage
+import io.github.frantoso.physicalquantities.electrical.W
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.data.Offset
 import org.junit.jupiter.api.DynamicTest

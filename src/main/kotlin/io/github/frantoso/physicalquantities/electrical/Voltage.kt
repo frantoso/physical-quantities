@@ -1,8 +1,8 @@
-package io.github.franklisting65.physicalquantities.electrical
+package io.github.frantoso.physicalquantities.electrical
 
-import io.github.franklisting65.physicalquantities.core.ScaledQuantity
-import io.github.franklisting65.physicalquantities.core.SimpleQuantity
-import io.github.franklisting65.physicalquantities.core.valueWithUnit
+import io.github.frantoso.physicalquantities.core.ScaledQuantity
+import io.github.frantoso.physicalquantities.core.SimpleQuantity
+import io.github.frantoso.physicalquantities.core.valueWithUnit
 
 /**
  * A class to hold a type and unit safe voltage value in Volt (V).

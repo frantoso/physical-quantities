@@ -9,7 +9,7 @@ import org.assertj.core.data.Offset
 import org.junit.jupiter.api.DynamicTest
 import org.junit.jupiter.api.TestFactory
 
-class PrefixTest {
+class PrefixesTest {
     @TestFactory
     fun `test prefixes with long names (int)`() =
         listOf(

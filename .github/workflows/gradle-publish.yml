@@ -35,13 +35,22 @@ jobs:
       run: |
         echo "Semver: ${{ steps.version_by_tag.outputs.version }}"
 
-# trigger pipeline 1
+    - name: Setup Gradle
+      uses: gradle/actions/setup-gradle@v4
+      with:
+        gradle-version: '8.10'
+    - run: chmod +x ./gradlew
 
-#    - name: Setup Gradle
-#      uses: gradle/actions/setup-gradle@af1da67850ed9a4cedd57bfd976089dd991e2582 # v4.0.0
-#
-#    - name: Build with Gradle
-#      run: ./gradlew build
+    - name: Add Gradle Properties
+      env:
+        LIBRARY_VERSION: ${{ steps.version_by_tag.outputs.version }}
+#        ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
+#        ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
+#        ORG_GRADLE_PROJECT_signingInMemoryKey: ${{ secrets.SIGNING_KEY }}
+#        ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.SIGNING_KEY_PASSWORD }}
+
+    - name: Build
+      run: ./gradlew build
 
     # The USERNAME and TOKEN need to correspond to the credentials environment variables used in
     # the publishing section of your build.gradle

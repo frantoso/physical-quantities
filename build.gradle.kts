@@ -37,11 +37,13 @@ dokka {
     }
 }
 
-version = "0.1.0"
+version = System.getenv("LIBRARY_VERSION") ?: project.findProperty("localLibraryVersion") ?: "-.-.-"
+
+println("Using version: $version")
 
 mavenPublishing {
     coordinates(
-        groupId = "io.github.franklisting65",
+        groupId = "io.github.frantoso",
         artifactId = "physical-quantities",
     )
 
@@ -52,7 +54,7 @@ mavenPublishing {
             "This library can be used by JVM targets which want to calculate values representing physical quantities in a type safe manner",
         )
         inceptionYear.set("2025")
-        url.set("https://github.com/franklisting65/physical-quantities/")
+        url.set("https://github.com/frantoso/physical-quantities/")
 
         licenses {
             license {
@@ -64,14 +66,14 @@ mavenPublishing {
 
         developers {
             developer {
-                id.set("franklisting65")
-                name.set("Frank Listing")
-                url.set("https://github.com/franklisting65/physical-quantities/")
+                id.set("frantoso")
+                name.set("The frantoso developers")
+                url.set("https://github.com/frantoso/physical-quantities/")
             }
         }
 
         scm {
-            url.set("https://github.com/franklisting65/physical-quantities/")
+            url.set("https://github.com/frantoso/physical-quantities/")
         }
     }
 

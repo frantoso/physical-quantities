@@ -28,16 +28,12 @@ jobs:
         distribution: 'corretto'
 
     - name: Get version and version code
-      uses: xom9ikk/version-by-tag@v1
+      uses: jannemattila/get-version-from-tag@v4
       id: version_by_tag
-      with:
-        isUseGithubRunNumber: false
 
     - name: Some other action
       run: |
-        echo "Tag: ${{ steps.version_by_tag.outputs.tag }}"
-        echo "Semver: ${{ steps.version_by_tag.outputs.semver }}"
-        echo "Version code: ${{ steps.version_by_tag.outputs.versionCode }}"
+        echo "Semver: ${{ steps.version_by_tag.outputs.version }}"
 
 # trigger pipeline 1
 

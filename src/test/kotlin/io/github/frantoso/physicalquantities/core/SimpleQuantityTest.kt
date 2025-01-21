@@ -1,25 +1,25 @@
-package io.github.franklisting65.physicalquantities.core
+package io.github.frantoso.physicalquantities.core
 
 import org.assertj.core.api.Assertions.assertThat
 import kotlin.test.Test
 
 class TestUnit(
     value: Number,
-) : SimpleUnit<TestUnit, TestUnit>(value.toDouble()) {
+) : SimpleQuantity<TestUnit, TestUnit>(value.toDouble()) {
     override fun createFromValue(value: Number): TestUnit = TestUnit(value.toDouble())
 }
 
 class TestDiff(
     value: Number,
-) : UnitBase(value.toDouble())
+) : QuantityBase(value.toDouble())
 
 class TestUnitWithDiff(
     value: Number,
-) : SimpleUnit<TestUnitWithDiff, TestDiff>(value.toDouble()) {
+) : SimpleQuantity<TestUnitWithDiff, TestDiff>(value.toDouble()) {
     override fun createFromValue(value: Number): TestUnitWithDiff = TestUnitWithDiff(value.toDouble())
 }
 
-class SimpleUnitTest {
+class SimpleQuantityTest {
     @Test
     fun `test greater than`() {
         val value1 = TestUnit(41)

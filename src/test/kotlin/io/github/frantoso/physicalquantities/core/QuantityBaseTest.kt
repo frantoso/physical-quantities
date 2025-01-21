@@ -1,4 +1,4 @@
-package io.github.franklisting65.physicalquantities.core
+package io.github.frantoso.physicalquantities.core
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DynamicTest
@@ -7,13 +7,13 @@ import kotlin.test.Test
 
 class TestBaseUnit(
     value: Number,
-) : UnitBase(value.toDouble())
+) : QuantityBase(value.toDouble())
 
 class OtherTestBaseUnit(
     value: Double,
-) : UnitBase(value)
+) : QuantityBase(value)
 
-class UnitBaseTest {
+class QuantityBaseTest {
     @TestFactory
     fun `test equals`() =
         listOf(

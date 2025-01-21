@@ -1,6 +1,8 @@
-package io.github.franklisting65.physicalquantities.electrical
+package io.github.frantoso.physicalquantities.electrical
 
-import io.github.franklisting65.physicalquantities.core.SimpleUnit
+import io.github.frantoso.physicalquantities.core.ScaledQuantity
+import io.github.frantoso.physicalquantities.core.SimpleQuantity
+import io.github.frantoso.physicalquantities.core.valueWithUnit
 
 /**
  * A class to hold a type and unit safe power value in Watt (W).
@@ -8,10 +10,10 @@ import io.github.franklisting65.physicalquantities.core.SimpleUnit
  */
 class Power private constructor(
     value: Number,
-) : SimpleUnit<Power, Power>(value),
+) : SimpleQuantity<Power, Power>(value),
     Comparable<Power> {
     /**
-     * Gets the raw value in Watt (w).
+     * Gets the raw value in Watt (W).
      */
     val watt: Double
         get() = value
@@ -38,3 +40,13 @@ class Power private constructor(
  */
 val Number.W: Power
     get() = Power.fromWatt(this)
+
+/**
+ * Creates a pair of a value and associated unit from a scaled power quantity and 'W'.
+ */
+val ScaledQuantity<Power>.W get() = valueWithUnit(this, "W")
+
+/**
+ * Creates a pair of a value and associated unit from a non-scaled power quantity and 'W'.
+ */
+val Power.W get() = this.valueWithUnit("W")

@@ -26,12 +26,12 @@ jobs:
 
       - name: Create Release
         id: create_release
-        uses: comnoco/create-release@v2
+        uses: softprops/action-gh-release@v2
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ steps.tag_version.outputs.new_tag }}
-          release_name: Release ${{ steps.tag_version.outputs.new_tag }}
+          name: Release ${{ steps.tag_version.outputs.new_tag }}
           body: ${{ steps.tag_version.outputs.changelog }}
           draft: false
           prerelease: false

@@ -5,7 +5,7 @@ plugins {
     kotlin("jvm") version "2.1.0"
     id("com.vanniktech.maven.publish") version "0.30.0"
     id("org.jmailen.kotlinter") version "5.0.1"
-    id("org.jetbrains.kotlinx.kover") version "0.7.5"
+    id("org.jetbrains.kotlinx.kover") version "0.9.1"
     id("org.jetbrains.dokka") version "2.0.0"
 }
 

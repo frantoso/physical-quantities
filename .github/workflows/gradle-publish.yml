@@ -50,9 +50,7 @@ jobs:
         #        ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.SIGNING_KEY_PASSWORD }}
         run: |
           echo "library version is: ${LIBRARY_VERSION}"
-
-      - name: Build
-        run: ./gradlew build
+          ./gradlew build
 
     # The USERNAME and TOKEN need to correspond to the credentials environment variables used in
     # the publishing section of your build.gradle

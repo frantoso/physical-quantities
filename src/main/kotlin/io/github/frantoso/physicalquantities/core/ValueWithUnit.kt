@@ -19,23 +19,28 @@ data class ValueWithUnit(
  *
  * @param scaledQuantity The scaled quantity instance holding the data.
  * @param symbolUnit The symbol of the unit to add to the prefix.
+ * @param conversion A convertion function to translate the value from the default unit to a different one.
  */
 fun <T : QuantityBase> valueWithUnit(
     scaledQuantity: ScaledQuantity<T>,
     symbolUnit: String,
+    conversion: (Double) -> Double = { value -> value },
 ): ValueWithUnit =
     ValueWithUnit(
-        value = scaledQuantity.quantity.value * scaledQuantity.scaleFactor,
+        value = conversion(scaledQuantity.quantity.value) * scaledQuantity.scaleFactor,
         symbolPrefix = scaledQuantity.symbolPrefix,
         symbolUnit = symbolUnit,
     )
 
 /**
- * Creates a [ValueWithUnit] from the provided quantity and [symbol].
+ * Creates a [ValueWithUnit] from the provided quantity and [symbol] using the provided [conversion].
  */
-fun <T : QuantityBase> T.valueWithUnit(symbol: String): ValueWithUnit =
+fun <T : QuantityBase> T.valueWithUnit(
+    symbol: String,
+    conversion: (Double) -> Double = { value -> value },
+): ValueWithUnit =
     ValueWithUnit(
-        value = value,
+        value = conversion(value),
         symbolPrefix = "",
         symbolUnit = symbol,
     )

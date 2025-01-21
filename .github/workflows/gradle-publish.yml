@@ -25,17 +25,13 @@ jobs:
       uses: actions/setup-java@v4
       with:
         java-version: '21'
-        distribution: 'Corretto'
-        server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
-        settings-path: ${{ github.workspace }} # location for the settings.xml file
+        distribution: 'corretto'
 
     - name: Get version and version code
       uses: xom9ikk/version-by-tag@v1
       id: version_by_tag
       with:
-        path: custom_path_to_repo
         isUseGithubRunNumber: false
-        offset: 77
 
     - name: Some other action
       run: |

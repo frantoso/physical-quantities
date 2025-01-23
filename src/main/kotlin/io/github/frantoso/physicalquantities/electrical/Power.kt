@@ -21,22 +21,22 @@ class Power private constructor(
     /**
      * Helper method to be able to generally create a new instance of the right unit type.
      * @param value The value to store in the new instance.
-     * @return Returns the newly created Power instance.
+     * @return Returns the newly created [Power] instance.
      */
     override fun createFromValue(value: Number): Power = Power(value)
 
     companion object {
         /**
-         * Converts a number holding a power value to a Power instance.
+         * Converts a number holding a power value to a [Power] instance.
          * @param value The number to interpret as Watt.
-         * @return Returns a Power instance.
+         * @return Returns a [Power] instance.
          */
         fun fromWatt(value: Number): Power = Power(value)
     }
 }
 
 /**
- * Converts a number holding a Watt value to a Power instance.
+ * Converts a number holding a Watt value to a [Power] instance.
  */
 val Number.W: Power
     get() = Power.fromWatt(this)
@@ -49,4 +49,4 @@ val ScaledQuantity<Power>.W get() = valueWithUnit(this, "W")
 /**
  * Creates a pair of a value and associated unit from a non-scaled power quantity and 'W'.
  */
-val Power.W get() = this.valueWithUnit("W")
+val Power.W get() = valueWithUnit("W")

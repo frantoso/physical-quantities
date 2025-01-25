@@ -15,8 +15,7 @@ class TemperatureDifference private constructor(
     /**
      * Gets the raw value in degrees (°).
      */
-    val degrees: Double
-        get() = value
+    val degrees: Double get() = value
 
     companion object {
         /**

@@ -15,8 +15,7 @@ class Power private constructor(
     /**
      * Gets the raw value in Watt (W).
      */
-    val watt: Double
-        get() = value
+    val watt: Double get() = value
 
     /**
      * Helper method to be able to generally create a new instance of the right unit type.
@@ -38,8 +37,7 @@ class Power private constructor(
 /**
  * Converts a number holding a Watt value to a [Power] instance.
  */
-val Number.W: Power
-    get() = Power.fromWatt(this)
+val Number.W: Power get() = Power.fromWatt(this)
 
 /**
  * Creates a pair of a value and associated unit from a scaled power quantity and 'W'.

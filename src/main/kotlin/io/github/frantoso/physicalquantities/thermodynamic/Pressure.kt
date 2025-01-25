@@ -15,8 +15,7 @@ class Pressure private constructor(
     /**
      * Gets the raw value in Pascal (Pa).
      */
-    val pascal: Double
-        get() = value
+    val pascal: Double get() = value
 
     /**
      * Helper method to be able to generally create a new instance of the right unit type.
@@ -46,21 +45,13 @@ val Number.Pa: Pressure get() = Pressure.fromPascal(this)
 val Number.bar: Pressure get() = Pressure.fromPascal(toDouble() * 100_000.0)
 
 /**
- * Creates a pair of a value and associated unit from a scaled pressure quantity and 'Pa'.
+ * Creates a pair of a value and associated unit from a scaled pressure quantity and the unit.
  */
 val ScaledQuantity<Pressure>.Pa get() = valueWithUnit(this, "Pa")
-
-/**
- * Creates a pair of a value and associated unit from a scaled pressure quantity and 'bar'.
- */
 val ScaledQuantity<Pressure>.bar get() = valueWithUnit(this, "bar") { value -> value / 100_000.0 }
 
 /**
- * Creates a pair of a value and associated unit from a non-scaled pressure quantity and 'Pa'.
+ * Creates a pair of a value and associated unit from a non-scaled pressure quantity and the unit.
  */
 val Pressure.Pa get() = valueWithUnit("Pa")
-
-/**
- * Creates a pair of a value and associated unit from a non-scaled pressure quantity and 'bar'.
- */
 val Pressure.bar get() = valueWithUnit("bar") { value -> value / 100_000.0 }

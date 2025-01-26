@@ -15,8 +15,7 @@ class Pressure private constructor(
     /**
      * Gets the raw value in Pascal (Pa).
      */
-    val pascal: Double
-        get() = value
+    val pascal: Double get() = value
 
     /**
      * Helper method to be able to generally create a new instance of the right unit type.
@@ -27,7 +26,7 @@ class Pressure private constructor(
 
     companion object {
         /**
-         * Converts a number holding a pressure value to a Pressure instance.
+         * Converts a number holding a pressure value to a [Pressure] instance.
          * @param value The number to interpret as Pascal.
          * @return Returns a [Pressure] instance.
          */
@@ -36,33 +35,23 @@ class Pressure private constructor(
 }
 
 /**
- * Converts a number holding a Pascal value to a Pressure instance.
+ * Converts a number holding a Pascal value to a [Pressure] instance.
  */
-val Number.Pa: Pressure
-    get() = Pressure.fromPascal(this)
+val Number.Pa: Pressure get() = Pressure.fromPascal(this)
 
 /**
- * Converts a number holding a bar value to a Pressure instance.
+ * Converts a number holding a bar value to a [Pressure] instance.
  */
-val Number.bar: Pressure
-    get() = Pressure.fromPascal(this.toDouble() * 100_000.0)
+val Number.bar: Pressure get() = Pressure.fromPascal(toDouble() * 100_000.0)
 
 /**
- * Creates a pair of a value and associated unit from a scaled pressure quantity and 'Pa'.
+ * Creates a pair of a value and associated unit from a scaled pressure quantity and the unit.
  */
 val ScaledQuantity<Pressure>.Pa get() = valueWithUnit(this, "Pa")
-
-/**
- * Creates a pair of a value and associated unit from a scaled pressure quantity and 'bar'.
- */
 val ScaledQuantity<Pressure>.bar get() = valueWithUnit(this, "bar") { value -> value / 100_000.0 }
 
 /**
- * Creates a pair of a value and associated unit from a non-scaled pressure quantity and 'Pa'.
+ * Creates a pair of a value and associated unit from a non-scaled pressure quantity and the unit.
  */
-val Pressure.Pa get() = this.valueWithUnit("Pa")
-
-/**
- * Creates a pair of a value and associated unit from a non-scaled pressure quantity and 'bar'.
- */
-val Pressure.bar get() = this.valueWithUnit("bar") { value -> value / 100_000.0 }
+val Pressure.Pa get() = valueWithUnit("Pa")
+val Pressure.bar get() = valueWithUnit("bar") { value -> value / 100_000.0 }

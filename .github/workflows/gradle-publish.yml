@@ -41,7 +41,7 @@ jobs:
           gradle-version: '8.10'
       - run: chmod +x ./gradlew
 
-      - name: Add Gradle Properties
+      - name: Publish to Maven Central
         env:
           LIBRARY_VERSION: ${{ steps.version_by_tag.outputs.version }}
           ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.MAVEN_CENTRAL_USERNAME }}

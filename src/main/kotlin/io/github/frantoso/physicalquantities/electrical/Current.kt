@@ -15,8 +15,7 @@ class Current private constructor(
     /**
      * Gets the raw value in Ampere (A).
      */
-    val ampere: Double
-        get() = value
+    val ampere: Double get() = value
 
     /**
      * Helper method to be able to generally create a new instance of the right unit type.
@@ -38,8 +37,7 @@ class Current private constructor(
 /**
  * Converts a number holding an Ampere value to a [Current] instance.
  */
-val Number.A: Current
-    get() = Current.fromAmpere(this)
+val Number.A: Current get() = Current.fromAmpere(this)
 
 /**
  * Creates a pair of a value and associated unit from a scaled current quantity and 'A'.

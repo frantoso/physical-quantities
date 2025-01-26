@@ -17,8 +17,7 @@ class Temperature private constructor(
     /**
      * Gets the raw value in Kelvin (K).
      */
-    val kelvin: Double
-        get() = value
+    val kelvin: Double get() = value
 
     /**
      * Helper method to be able to generally create a new instance of the right unit type.

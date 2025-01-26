@@ -14,8 +14,7 @@ class Voltage private constructor(
     /**
      * Gets the raw value in Volt (V).
      */
-    val volt: Double
-        get() = value
+    val volt: Double get() = value
 
     /**
      * Helper method to be able to generally create a new instance of the right unit type.
@@ -37,8 +36,7 @@ class Voltage private constructor(
 /**
  * Converts a number holding a Volt value to a [Voltage] instance.
  */
-val Number.V: Voltage
-    get() = Voltage.fromVolt(this)
+val Number.V: Voltage get() = Voltage.fromVolt(this)
 
 /**
  * Creates a pair of a value and associated unit from a scaled voltage quantity and 'V'.

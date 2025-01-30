@@ -1,5 +1,7 @@
 package io.github.frantoso.physicalquantities.core
 
+// @formatter:off
+@Suppress("ktlint")
 enum class Prefix(
     val symbol: String,
     val factorToBase: Double,
@@ -21,4 +23,14 @@ enum class Prefix(
     TERA("T", 1e12, 1e-12),
     PETA("P", 1e15, 1e-15),
     EXA("E", 1e18, 1e-18),
+    None("None", 1.0, 1.0),
 }
+// @formatter:on
+
+/**
+ * Converts a string to a prefix.
+ * @throws NoSuchPrefixException in case of an unknown prefix string.
+ */
+fun String.toPrefix(): Prefix =
+    enumValues<Prefix>().firstOrNull { it.name == this.uppercase() } ?: enumValues<Prefix>().firstOrNull { it.symbol == this }
+        ?: throw NoSuchPrefixException("Unknown prefix $this")

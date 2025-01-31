@@ -11,7 +11,7 @@ import io.github.frantoso.physicalquantities.core.SimpleDifference
  */
 class TemperatureDifference private constructor(
     value: Number,
-) : SimpleDifference<TemperatureDifference>(value) {
+) : SimpleDifference<TemperatureDifference>(value, "°") {
     /**
      * Gets the raw value in degrees (°).
      */

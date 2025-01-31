@@ -11,7 +11,7 @@ import io.github.frantoso.physicalquantities.core.SimpleDifference
  */
 class TemperatureDifference private constructor(
     value: Number,
-) : SimpleDifference<TemperatureDifference>(value, "°") {
+) : SimpleDifference<TemperatureDifference>(value, BASE_SYMBOL) {
     /**
      * Gets the raw value in degrees (°).
      */
@@ -24,6 +24,8 @@ class TemperatureDifference private constructor(
          * @return Returns a [Temperature] instance.
          */
         fun fromDegrees(value: Number): TemperatureDifference = TemperatureDifference(value)
+
+        const val BASE_SYMBOL = "°"
     }
 }
 

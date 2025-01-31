@@ -44,4 +44,12 @@ class VoltageTest {
 
         assertThat(result).isEqualTo(ValueWithUnit(42000.0, "m", "V"))
     }
+
+    @Test
+    fun `from value with unit`() {
+        val input = ValueWithUnit(2.3, "m", "V")
+        val result = Voltage.fromValueWithUnit(input)
+
+        assertThat(result).isEqualTo(2.3._m.V)
+    }
 }

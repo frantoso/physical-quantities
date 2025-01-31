@@ -1,5 +1,6 @@
 package io.github.frantoso.physicalquantities.core
 
+import io.github.frantoso.physicalquantities.utils.defaultNumberFormatter
 import kotlin.math.roundToInt
 
 /**
@@ -8,12 +9,29 @@ import kotlin.math.roundToInt
  * @param QuantityType The type of the concrete instance.
  * @param DiffType The type to add or subtract. Maybe the same as the [QuantityType].
  * @param value The raw value to store in this instance. Raw values unit is the reference unit of the quantity.
+ * @param unitSymbol The symbol of the unit used in the derived class.
  * @constructor Initializes a new instance of the [SimpleQuantity] class.
  */
 abstract class SimpleQuantity<QuantityType : QuantityBase, DiffType : QuantityBase> protected constructor(
     value: Number,
+    val unitSymbol: String,
 ) : QuantityBase(value.toDouble()),
     Comparable<QuantityType> {
+    /**
+     * Helper class to store a unit symbol together t´with a creator function.
+     * @property symbol The unit symbol to associate with the creator.
+     * @property creator A function used to create a quantity object from type T.
+     */
+    data class CreatorInfo<T>(
+        val symbol: String,
+        val creator: (Double) -> T,
+    )
+
+    /**
+     * Returns a string representation of the object (it's value and base unit).
+     */
+    override fun toString(): String = "${defaultNumberFormatter.format(value)} $unitSymbol"
+
     /**
      * Compares this instance with the specified instance for order.
      * @param other The instance to compare with this instance.
@@ -65,4 +83,28 @@ abstract class SimpleQuantity<QuantityType : QuantityBase, DiffType : QuantityBa
      * @return Returns the newly created instance from type [QuantityType].
      */
     protected abstract fun createFromValue(value: Number): QuantityType
+
+    companion object {
+        /**
+         * Conversion function to get a quantity from a [ValueWithUnit] instance.
+         * @param T The type of the quantity to return from the function.
+         * @param input The instance to convert.
+         * @param creators A list of creator functions provided by the specialized class.
+         * @return Returns the newly created quantity instance.
+         * @throws Throws
+         *  - [NoSuchPrefixException] if there was an invalid prefix found.
+         *  - [NoSuchUnitException] if there is no creator for the symbol found.
+         */
+        @JvmStatic
+        protected inline fun <reified T> fromValueWithUnit(
+            input: ValueWithUnit,
+            creators: List<CreatorInfo<T>>,
+        ): T {
+            val factor = input.symbolPrefix.toPrefix().factorToBase
+            val creator = creators.find { it.symbol == input.symbolUnit }?.creator
+
+            val instance = creator?.invoke(input.value * factor)
+            return instance ?: throw NoSuchUnitException("Unit ${input.symbolUnit} is not supported by ${T::class}")
+        }
+    }
 }

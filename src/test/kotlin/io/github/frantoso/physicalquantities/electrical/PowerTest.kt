@@ -44,4 +44,12 @@ class PowerTest {
 
         assertThat(result).isEqualTo(ValueWithUnit(42000.0, "m", "W"))
     }
+
+    @Test
+    fun `from value with unit`() {
+        val input = ValueWithUnit(2.3, "m", "W")
+        val result = Power.fromValueWithUnit(input)
+
+        assertThat(result).isEqualTo(2.3._m.W)
+    }
 }

@@ -4,6 +4,8 @@ import io.github.frantoso.physicalquantities.core.ValueWithUnit
 import io.github.frantoso.physicalquantities.core._k
 import io.github.frantoso.physicalquantities.core._m
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.DynamicTest
+import org.junit.jupiter.api.TestFactory
 import kotlin.test.Test
 
 class EnergyTest {
@@ -67,4 +69,18 @@ class EnergyTest {
         assertThat(resultWs).isEqualTo(ValueWithUnit(10_800_000.0, "m", "Ws"))
         assertThat(resultWh).isEqualTo(ValueWithUnit(0.003, "k", "Wh"))
     }
+
+    @TestFactory
+    fun `from value with unit`() =
+        listOf(
+            ValueWithUnit(2.3, "k", "J") to 2.3._k.J,
+            ValueWithUnit(2.3, "k", "Ws") to 2.3._k.J,
+            ValueWithUnit(2.3, "k", "Wh") to (2.3 * 3_600)._k.J,
+        ).mapIndexed { index, (input, expected) ->
+            DynamicTest.dynamicTest("${"%02d".format(index)} expected result: $expected") {
+                val result = Energy.fromValueWithUnit(input)
+
+                assertThat(result).isEqualTo(expected)
+            }
+        }
 }

@@ -23,7 +23,7 @@ enum class Prefix(
     TERA("T", 1e12, 1e-12),
     PETA("P", 1e15, 1e-15),
     EXA("E", 1e18, 1e-18),
-    None("None", 1.0, 1.0),
+    None("", 1.0, 1.0),
 }
 // @formatter:on
 

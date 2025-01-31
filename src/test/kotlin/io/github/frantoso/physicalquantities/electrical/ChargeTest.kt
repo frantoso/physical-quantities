@@ -44,4 +44,12 @@ class ChargeTest {
 
         assertThat(result).isEqualTo(ValueWithUnit(42000.0, "m", "C"))
     }
+
+    @Test
+    fun `from value with unit`() {
+        val input = ValueWithUnit(2.3, "m", "C")
+        val result = Charge.fromValueWithUnit(input)
+
+        assertThat(result).isEqualTo(2.3._m.C)
+    }
 }

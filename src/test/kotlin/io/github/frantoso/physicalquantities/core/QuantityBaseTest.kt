@@ -53,4 +53,16 @@ class QuantityBaseTest {
         assertThat(result1).isEqualTo(1.0)
         assertThat(result2).isEqualTo(-1.0)
     }
+
+    @Test
+    fun `test toString`() {
+        val value1 = TestBaseUnit(20.3)
+        val value2 = TestBaseUnit(-20.6)
+
+        val result1 = value1.toString()
+        val result2 = value2.toString()
+
+        assertThat(result1).isEqualTo("20.3")
+        assertThat(result2).isEqualTo("-20.6")
+    }
 }

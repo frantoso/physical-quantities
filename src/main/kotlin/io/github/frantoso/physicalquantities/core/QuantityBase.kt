@@ -23,6 +23,11 @@ abstract class QuantityBase protected constructor(
     override fun hashCode(): Int = value.hashCode()
 
     /**
+     * Returns a string representation of the object (it's value).
+     */
+    override fun toString(): String = value.toString()
+
+    /**
      * Gets the sign of this instance:
      *   - `-1.0` if the value is negative,
      *   - zero if the value is zero,

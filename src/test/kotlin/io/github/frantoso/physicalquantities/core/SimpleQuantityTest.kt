@@ -152,7 +152,7 @@ class SimpleQuantityTest {
 
     @Test
     fun `test CreatorInfo`() {
-        val info = SimpleQuantity.CreatorInfo("y") { d -> d.toString() }
+        val info = CreatorInfo("y") { d -> d.toString() }
 
         assertThat(info.symbol).isEqualTo("y")
         assertThat(info.creator(2.0)).isEqualTo("2.0")

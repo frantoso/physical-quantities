@@ -7,7 +7,7 @@ import kotlin.test.Test
 class SimpleDifferenceTest {
     class TestDiff(
         value: Number,
-    ) : SimpleDifference<TestDiff>(value.toDouble())
+    ) : SimpleDifference<TestDiff>(value.toDouble(), "x")
 
     @Test
     fun `test initialisation`() {
@@ -29,5 +29,17 @@ class SimpleDifferenceTest {
         assertThat(value2 <= value1).isFalse
         assertThat(value2 > value1).isTrue
         assertThat(value2 >= value1).isTrue
+    }
+
+    @Test
+    fun `test toString`() {
+        val value1 = TestDiff(20.3)
+        val value2 = TestDiff(-20.6)
+
+        val result1 = value1.toString()
+        val result2 = value2.toString()
+
+        assertThat(result1).isEqualTo("20.3 x")
+        assertThat(result2).isEqualTo("-20.6 x")
     }
 }

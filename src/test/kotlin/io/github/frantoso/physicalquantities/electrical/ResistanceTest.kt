@@ -44,4 +44,12 @@ class ResistanceTest {
 
         assertThat(result).isEqualTo(ValueWithUnit(42000.0, "m", "Ω"))
     }
+
+    @Test
+    fun `from value with unit`() {
+        val input = ValueWithUnit(2.3, "m", "Ω")
+        val result = Resistance.fromValueWithUnit(input)
+
+        assertThat(result).isEqualTo(2.3._m.O)
+    }
 }

@@ -1,9 +1,12 @@
 package io.github.frantoso.physicalquantities.thermodynamic
 
 import io.github.frantoso.physicalquantities.core.ValueWithUnit
+import io.github.frantoso.physicalquantities.core._k
 import io.github.frantoso.physicalquantities.core._m
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.data.Offset
+import org.junit.jupiter.api.DynamicTest
+import org.junit.jupiter.api.TestFactory
 import kotlin.test.Test
 
 class PressureTest {
@@ -70,4 +73,17 @@ class PressureTest {
 
         assertThat(result).isEqualTo(ValueWithUnit(42_000.0, "m", "bar"))
     }
+
+    @TestFactory
+    fun `from value with unit`() =
+        listOf(
+            ValueWithUnit(2.3, "k", "Pa") to 2.3._k.Pa,
+            ValueWithUnit(2.3, "m", "bar") to 2.3._m.bar,
+        ).mapIndexed { index, (input, expected) ->
+            DynamicTest.dynamicTest("${"%02d".format(index)} expected result: $expected") {
+                val result = Pressure.fromValueWithUnit(input)
+
+                assertThat(result).isEqualTo(expected)
+            }
+        }
 }

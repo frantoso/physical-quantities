@@ -1,6 +1,7 @@
 package io.github.frantoso.physicalquantities.electrical
 
 import io.github.frantoso.physicalquantities.core.ValueWithUnit
+import io.github.frantoso.physicalquantities.core._M
 import io.github.frantoso.physicalquantities.core._m
 import org.assertj.core.api.Assertions.assertThat
 import kotlin.test.Test
@@ -43,5 +44,13 @@ class FrequencyTest {
         val result = frequency._m.Hz
 
         assertThat(result).isEqualTo(ValueWithUnit(42000.0, "m", "Hz"))
+    }
+
+    @Test
+    fun `from value with unit`() {
+        val input = ValueWithUnit(2.3, "M", "Hz")
+        val result = Frequency.fromValueWithUnit(input)
+
+        assertThat(result).isEqualTo(2.3._M.Hz)
     }
 }

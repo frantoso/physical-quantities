@@ -1,7 +1,10 @@
 package io.github.frantoso.physicalquantities.electrical
 
+import io.github.frantoso.physicalquantities.core.NoSuchPrefixException
+import io.github.frantoso.physicalquantities.core.NoSuchUnitException
 import io.github.frantoso.physicalquantities.core.ScaledQuantity
 import io.github.frantoso.physicalquantities.core.SimpleQuantity
+import io.github.frantoso.physicalquantities.core.ValueWithUnit
 import io.github.frantoso.physicalquantities.core.valueWithUnit
 
 /**
@@ -10,7 +13,7 @@ import io.github.frantoso.physicalquantities.core.valueWithUnit
  */
 class Frequency private constructor(
     value: Number,
-) : SimpleQuantity<Frequency, Frequency>(value),
+) : SimpleQuantity<Frequency, Frequency>(value, BASE_SYMBOL),
     Comparable<Frequency> {
     /**
      * Gets the raw value in Hertz (Hz).
@@ -25,12 +28,29 @@ class Frequency private constructor(
     override fun createFromValue(value: Number): Frequency = Frequency(value)
 
     companion object {
+        const val BASE_SYMBOL = "Hz"
+
         /**
          * Converts a number holding a frequency value to a [Frequency] instance.
          * @param value The number to interpret as Hertz.
          * @return Returns a [Frequency] instance.
          */
         fun fromHertz(value: Number): Frequency = Frequency(value)
+
+        /**
+         * Conversion function to get a quantity from a [ValueWithUnit] instance.
+         * @param input The instance to convert.
+         * @return Returns the newly created quantity instance.
+         * @throws Throws
+         *  - [NoSuchPrefixException] if there was an invalid prefix found.
+         *  - [NoSuchUnitException] if there is no creator for the symbol found.
+         */
+        fun fromValueWithUnit(input: ValueWithUnit): Frequency = fromValueWithUnit(input, creators)
+
+        /**
+         * Gets a list of creator functions to generate a new instance from a symbol.
+         */
+        private val creators = listOf(CreatorInfo(BASE_SYMBOL) { value -> value.Hz })
     }
 }
 
@@ -42,9 +62,9 @@ val Number.Hz: Frequency get() = Frequency.fromHertz(this)
 /**
  * Creates a pair of a value and associated unit from a scaled frequency quantity and 'Hz'.
  */
-val ScaledQuantity<Frequency>.Hz get() = valueWithUnit(this, "Hz")
+val ScaledQuantity<Frequency>.Hz get() = valueWithUnit(this, Frequency.BASE_SYMBOL)
 
 /**
  * Creates a pair of a value and associated unit from a non-scaled frequency quantity and 'Hz'.
  */
-val Frequency.Hz get() = valueWithUnit("Hz")
+val Frequency.Hz get() = valueWithUnit(Frequency.BASE_SYMBOL)

@@ -44,4 +44,12 @@ class CurrentTest {
 
         assertThat(result).isEqualTo(ValueWithUnit(42000.0, "m", "A"))
     }
+
+    @Test
+    fun `from value with unit`() {
+        val input = ValueWithUnit(2.3, "m", "A")
+        val result = Current.fromValueWithUnit(input)
+
+        assertThat(result).isEqualTo(2.3._m.A)
+    }
 }

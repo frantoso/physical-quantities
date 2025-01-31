@@ -2,9 +2,12 @@ package io.github.frantoso.physicalquantities.thermodynamic
 
 import io.github.frantoso.physicalquantities.core.ValueWithUnit
 import io.github.frantoso.physicalquantities.core._c
+import io.github.frantoso.physicalquantities.core._k
 import io.github.frantoso.physicalquantities.core._m
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.data.Offset
+import org.junit.jupiter.api.DynamicTest
+import org.junit.jupiter.api.TestFactory
 import kotlin.test.Test
 
 @Suppress("NonAsciiCharacters")
@@ -101,4 +104,18 @@ class TemperatureTest {
 
         assertThat(result).isEqualTo(ValueWithUnit(200.0, "c", "°C"))
     }
+
+    @TestFactory
+    fun `from value with unit`() =
+        listOf(
+            ValueWithUnit(200.3, "", "K") to 200.3.K,
+            ValueWithUnit(2.3, "k", "Celsius") to 2.3._k.Celsius,
+            ValueWithUnit(2.3, "m", "°C") to 2.3._m.Celsius,
+        ).mapIndexed { index, (input, expected) ->
+            DynamicTest.dynamicTest("${"%02d".format(index)} expected result: $expected") {
+                val result = Temperature.fromValueWithUnit(input)
+
+                assertThat(result).isEqualTo(expected)
+            }
+        }
 }

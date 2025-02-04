@@ -6,8 +6,6 @@ Test project to create a kotlin lib to handle physical quantities in code in a t
 
 ## Examples
 
-Initialize some `Voltage` in **V**olts and `Current` in **A**mpere to combine them into `Power` in **W**atts: 
-
 ```kotlin
 val power = 23.V.times(42.A)
 

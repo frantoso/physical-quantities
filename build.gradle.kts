@@ -13,10 +13,13 @@ dependencies {
     testImplementation(kotlin("test"))
     testImplementation("org.assertj:assertj-core:3.25.1")
     testImplementation("io.mockk:mockk:1.13.11")
+
+    implementation("com.github.jillesvangurp:kotlin4example:1.1.6")
 }
 
 repositories {
     mavenCentral()
+    maven { url = uri("https://jitpack.io") } // used by kotlin4example
 }
 
 kotlin {

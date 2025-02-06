@@ -3,8 +3,9 @@ package io.github.frantoso.physicalquantities.thermodynamic
 import io.github.frantoso.physicalquantities.core.ValueWithUnit
 import io.github.frantoso.physicalquantities.core._k
 import io.github.frantoso.physicalquantities.core._m
+import io.github.frantoso.physicalquantities.testUtils.STANDARD_OFFSET
+import io.github.frantoso.physicalquantities.utils.toBigDecimal
 import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.data.Offset
 import org.junit.jupiter.api.DynamicTest
 import org.junit.jupiter.api.TestFactory
 import kotlin.test.Test
@@ -14,28 +15,28 @@ class PressureTest {
     fun `test initialisation`() {
         val pressure = Pressure.fromPascal(24)
 
-        assertThat(pressure.pascal).isEqualTo(24.0)
+        assertThat(pressure.pascal).isEqualTo(24.toBigDecimal())
     }
 
     @Test
     fun `test initialisation from literal (Pa)`() {
         val pressure = 24.Pa
 
-        assertThat(pressure.pascal).isEqualTo(24.0)
+        assertThat(pressure.pascal).isEqualTo(24.toBigDecimal())
     }
 
     @Test
     fun `test initialisation from literal (bar)`() {
         val pressure = 2.3.bar
 
-        assertThat(pressure.pascal).isCloseTo(230_000.0, Offset.offset(0.00000001))
+        assertThat(pressure.pascal).isCloseTo(230_000.0.toBigDecimal(), STANDARD_OFFSET)
     }
 
     @Test
     fun `test createFromValue`() {
         val pressure = -(24.Pa) // base class calls createFromValue()
 
-        assertThat(pressure.pascal).isEqualTo(-24.0)
+        assertThat(pressure.pascal).isEqualTo((-24).toBigDecimal())
     }
 
     @Test

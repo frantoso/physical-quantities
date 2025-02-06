@@ -8,6 +8,8 @@ import io.github.frantoso.physicalquantities.core.ScaledQuantity
 import io.github.frantoso.physicalquantities.core.SimpleQuantity
 import io.github.frantoso.physicalquantities.core.ValueWithUnit
 import io.github.frantoso.physicalquantities.core.valueWithUnit
+import io.github.frantoso.physicalquantities.utils.toBigDecimal
+import java.math.BigDecimal
 
 /**
  * A class to hold a type and unit safe temperature value in Kelvin (K).
@@ -20,7 +22,7 @@ class Temperature private constructor(
     /**
      * Gets the raw value in Kelvin (K).
      */
-    val kelvin: Double get() = value
+    val kelvin: BigDecimal get() = value
 
     /**
      * Helper method to be able to generally create a new instance of the right unit type.
@@ -69,7 +71,7 @@ val Number.K: Temperature get() = Temperature.fromKelvin(this)
 /**
  * Converts a number holding a °Celsius value to a [Temperature] instance.
  */
-val Number.Celsius: Temperature get() = Temperature.fromKelvin(toDouble() + 273.15)
+val Number.Celsius: Temperature get() = Temperature.fromKelvin(toBigDecimal().plus(273.15.toBigDecimal()))
 
 /**
  * Converts a number holding a °Celsius value to a [Temperature] instance.
@@ -84,7 +86,12 @@ val ScaledQuantity<Temperature>.K get() = valueWithUnit(this, Temperature.BASE_S
 /**
  * Creates a pair of a value and associated unit from a scaled temperature quantity and '°C'.
  */
-val ScaledQuantity<Temperature>.Celsius get() = valueWithUnit(this, "°C") { value -> value - 273.15 }
+val ScaledQuantity<Temperature>.Celsius
+    get() =
+        valueWithUnit(
+            this,
+            "°C",
+        ) { value -> value.minus(273.15.toBigDecimal()) }
 
 /**
  * Creates a pair of a value and associated unit from a scaled temperature quantity and '°C'.
@@ -99,7 +106,7 @@ val Temperature.K get() = valueWithUnit(Temperature.BASE_SYMBOL)
 /**
  * Creates a pair of a value and associated unit from a non-scaled temperature quantity and '°C'.
  */
-val Temperature.Celsius get() = valueWithUnit("°C") { value -> value - 273.15 }
+val Temperature.Celsius get() = valueWithUnit("°C") { value -> value.minus(273.15.toBigDecimal()) }
 
 /**
  * Creates a pair of a value and associated unit from a non-scaled temperature quantity and '°C'.

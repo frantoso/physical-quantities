@@ -3,6 +3,7 @@
 package io.github.frantoso.physicalquantities.thermodynamic
 
 import io.github.frantoso.physicalquantities.core.SimpleDifference
+import java.math.BigDecimal
 
 /**
  * A class to hold a type and unit safe temperature difference value in Degrees (°).
@@ -15,7 +16,7 @@ class TemperatureDifference private constructor(
     /**
      * Gets the raw value in degrees (°).
      */
-    val degrees: Double get() = value
+    val degrees: BigDecimal get() = value
 
     companion object {
         /**
@@ -32,7 +33,7 @@ class TemperatureDifference private constructor(
 /**
  * Converts a number holding a °Celsius value to a [Temperature] instance.
  */
-val Number.Degrees: TemperatureDifference get() = TemperatureDifference.fromDegrees(toDouble())
+val Number.Degrees: TemperatureDifference get() = TemperatureDifference.fromDegrees(this)
 
 /**
  * Converts a number holding a °Celsius value to a [Temperature] instance.

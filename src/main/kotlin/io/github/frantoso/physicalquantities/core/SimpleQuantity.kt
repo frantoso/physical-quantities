@@ -1,7 +1,8 @@
 package io.github.frantoso.physicalquantities.core
 
 import io.github.frantoso.physicalquantities.utils.defaultNumberFormatter
-import kotlin.math.roundToInt
+import io.github.frantoso.physicalquantities.utils.toBigDecimal
+import java.math.RoundingMode
 
 /**
  * Base class for simple quantities.
@@ -15,7 +16,7 @@ import kotlin.math.roundToInt
 abstract class SimpleQuantity<QuantityType : QuantityBase, DiffType : QuantityBase> protected constructor(
     value: Number,
     val unitSymbol: String,
-) : QuantityBase(value.toDouble()),
+) : QuantityBase(value),
     Comparable<QuantityType> {
     /**
      * Helper class to store a unit symbol together t´with a creator function.
@@ -24,7 +25,7 @@ abstract class SimpleQuantity<QuantityType : QuantityBase, DiffType : QuantityBa
      */
     data class CreatorInfo<T>(
         val symbol: String,
-        val creator: (Double) -> T,
+        val creator: (Number) -> T,
     )
 
     /**
@@ -51,31 +52,31 @@ abstract class SimpleQuantity<QuantityType : QuantityBase, DiffType : QuantityBa
      * Subtracts [other] from this value.
      * @return Returns the result of the operation.
      */
-    operator fun minus(other: DiffType): QuantityType = createFromValue(value - other.value)
+    operator fun minus(other: DiffType): QuantityType = createFromValue(value.minus(other.value))
 
     /**
      * Adds [other] to this value.
      * @return Returns the result of the operation.
      */
-    operator fun plus(other: DiffType): QuantityType = createFromValue(value + other.value)
+    operator fun plus(other: DiffType): QuantityType = createFromValue(value.plus(other.value))
 
     /**
      * Multiplies this value by [other].
      * @return Returns the result of the operation.
      */
-    operator fun times(other: Number): QuantityType = createFromValue(value * other.toDouble())
+    operator fun times(other: Number): QuantityType = createFromValue(value.multiply(other.toBigDecimal()))
 
     /**
      * Divides this value by [other].
      * @return Returns the result of the operation.
      */
-    operator fun div(other: Number): QuantityType = createFromValue(value / other.toDouble())
+    operator fun div(other: Number): QuantityType = createFromValue(value.divide(other.toBigDecimal()))
 
     /**
      * Rounds this value towards the closest integer with ties rounded towards even integer.
      * @return Returns an instance containing the rounded value.
      */
-    fun round(): QuantityType = createFromValue(value.roundToInt())
+    fun round(): QuantityType = createFromValue(value.setScale(0, RoundingMode.HALF_UP))
 
     /**
      * Helper method to be able to generally create a new instance of the right quantity type.

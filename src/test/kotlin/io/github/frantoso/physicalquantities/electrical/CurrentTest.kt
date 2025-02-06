@@ -2,6 +2,7 @@ package io.github.frantoso.physicalquantities.electrical
 
 import io.github.frantoso.physicalquantities.core.ValueWithUnit
 import io.github.frantoso.physicalquantities.core._m
+import io.github.frantoso.physicalquantities.utils.toBigDecimal
 import org.assertj.core.api.Assertions.assertThat
 import kotlin.test.Test
 
@@ -10,21 +11,21 @@ class CurrentTest {
     fun `test initialisation`() {
         val current = Current.fromAmpere(24)
 
-        assertThat(current.ampere).isEqualTo(24.0)
+        assertThat(current.ampere).isEqualTo(24.toBigDecimal())
     }
 
     @Test
     fun `test initialisation from literal`() {
         val current = 24.A
 
-        assertThat(current.ampere).isEqualTo(24.0)
+        assertThat(current.ampere).isEqualTo(24.toBigDecimal())
     }
 
     @Test
     fun `test createFromValue`() {
         val current = -(24.A) // base class calls createFromValue()
 
-        assertThat(current.ampere).isEqualTo(-24.0)
+        assertThat(current.ampere).isEqualTo((-24).toBigDecimal())
     }
 
     @Test

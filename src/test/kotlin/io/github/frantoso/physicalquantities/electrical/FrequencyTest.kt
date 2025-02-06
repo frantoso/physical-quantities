@@ -3,6 +3,7 @@ package io.github.frantoso.physicalquantities.electrical
 import io.github.frantoso.physicalquantities.core.ValueWithUnit
 import io.github.frantoso.physicalquantities.core._M
 import io.github.frantoso.physicalquantities.core._m
+import io.github.frantoso.physicalquantities.utils.toBigDecimal
 import org.assertj.core.api.Assertions.assertThat
 import kotlin.test.Test
 
@@ -11,21 +12,21 @@ class FrequencyTest {
     fun `test initialisation`() {
         val frequency = Frequency.fromHertz(24)
 
-        assertThat(frequency.hertz).isEqualTo(24.0)
+        assertThat(frequency.hertz).isEqualTo(24.toBigDecimal())
     }
 
     @Test
     fun `test initialisation from literal`() {
         val frequency = 24.Hz
 
-        assertThat(frequency.hertz).isEqualTo(24.0)
+        assertThat(frequency.hertz).isEqualTo(24.toBigDecimal())
     }
 
     @Test
     fun `test createFromValue`() {
         val frequency = -(24.Hz) // base class calls createFromValue()
 
-        assertThat(frequency.hertz).isEqualTo(-24.0)
+        assertThat(frequency.hertz).isEqualTo((-24).toBigDecimal())
     }
 
     @Test

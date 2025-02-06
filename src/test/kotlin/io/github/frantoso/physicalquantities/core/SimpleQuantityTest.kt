@@ -1,6 +1,7 @@
 package io.github.frantoso.physicalquantities.core
 
 import io.github.frantoso.physicalquantities.core.SimpleQuantity.CreatorInfo
+import io.github.frantoso.physicalquantities.utils.toBigDecimal
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.DynamicTest
@@ -10,8 +11,8 @@ import kotlin.test.Test
 class SimpleQuantityTest {
     class TestQuantity(
         value: Number,
-    ) : SimpleQuantity<TestQuantity, TestQuantity>(value.toDouble(), "y") {
-        override fun createFromValue(value: Number): TestQuantity = TestQuantity(value.toDouble())
+    ) : SimpleQuantity<TestQuantity, TestQuantity>(value, "y") {
+        override fun createFromValue(value: Number): TestQuantity = TestQuantity(value)
 
         companion object {
             fun callFromValueWithUnit(
@@ -23,19 +24,19 @@ class SimpleQuantityTest {
 
     class TestDiff(
         value: Number,
-    ) : QuantityBase(value.toDouble())
+    ) : QuantityBase(value)
 
     class TestQuantityWithDiff(
         value: Number,
-    ) : SimpleQuantity<TestQuantityWithDiff, TestDiff>(value.toDouble(), "z") {
-        override fun createFromValue(value: Number): TestQuantityWithDiff = TestQuantityWithDiff(value.toDouble())
+    ) : SimpleQuantity<TestQuantityWithDiff, TestDiff>(value, "z") {
+        override fun createFromValue(value: Number): TestQuantityWithDiff = TestQuantityWithDiff(value)
     }
 
     @Test
     fun `test properties`() {
         val quantity = TestQuantity(20.1)
 
-        assertThat(quantity.value).isEqualTo(20.1)
+        assertThat(quantity.value).isEqualTo(20.1.toBigDecimal())
         assertThat(quantity.unitSymbol).isEqualTo("y")
     }
 
@@ -65,7 +66,7 @@ class SimpleQuantityTest {
         assertThat(quantity3).isInstanceOf(TestQuantity::class.java)
         assertThat(quantity1).isNotEqualTo(quantity2)
         assertThat(quantity2).isEqualTo(quantity3)
-        assertThat(quantity2.value).isEqualTo(-41.0)
+        assertThat(quantity2.value).isEqualTo(-41.toBigDecimal())
     }
 
     @Test

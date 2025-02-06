@@ -6,6 +6,7 @@ import io.github.frantoso.physicalquantities.core.ScaledQuantity
 import io.github.frantoso.physicalquantities.core.SimpleQuantity
 import io.github.frantoso.physicalquantities.core.ValueWithUnit
 import io.github.frantoso.physicalquantities.core.valueWithUnit
+import java.math.BigDecimal
 
 /**
  * A class to hold a type and unit safe power value in Watt (W).
@@ -18,7 +19,7 @@ class Power private constructor(
     /**
      * Gets the raw value in Watt (W).
      */
-    val watt: Double get() = value
+    val watt: BigDecimal get() = value
 
     /**
      * Helper method to be able to generally create a new instance of the right unit type.

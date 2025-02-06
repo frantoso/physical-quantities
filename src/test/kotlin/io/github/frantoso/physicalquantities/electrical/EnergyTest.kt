@@ -3,6 +3,7 @@ package io.github.frantoso.physicalquantities.electrical
 import io.github.frantoso.physicalquantities.core.ValueWithUnit
 import io.github.frantoso.physicalquantities.core._k
 import io.github.frantoso.physicalquantities.core._m
+import io.github.frantoso.physicalquantities.utils.toBigDecimal
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DynamicTest
 import org.junit.jupiter.api.TestFactory
@@ -13,35 +14,35 @@ class EnergyTest {
     fun `test initialisation`() {
         val energy = Energy.fromJoule(24)
 
-        assertThat(energy.joule).isEqualTo(24.0)
+        assertThat(energy.joule).isEqualTo(24.toBigDecimal())
     }
 
     @Test
     fun `test initialisation from literal (J)`() {
         val energy = 24.J
 
-        assertThat(energy.joule).isEqualTo(24.0)
+        assertThat(energy.joule).isEqualTo(24.toBigDecimal())
     }
 
     @Test
     fun `test initialisation from literal (Ws)`() {
         val energy = 24.Ws
 
-        assertThat(energy.joule).isEqualTo(24.0)
+        assertThat(energy.joule).isEqualTo(24.toBigDecimal())
     }
 
     @Test
     fun `test initialisation from literal (Wh)`() {
         val energy = 24.Wh
 
-        assertThat(energy.joule).isEqualTo(86_400.0)
+        assertThat(energy.joule).isEqualTo(86_400.toBigDecimal())
     }
 
     @Test
     fun `test createFromValue`() {
         val energy = -(24.J) // base class calls createFromValue()
 
-        assertThat(energy.joule).isEqualTo(-24.0)
+        assertThat(energy.joule).isEqualTo((-24).toBigDecimal())
     }
 
     @Test

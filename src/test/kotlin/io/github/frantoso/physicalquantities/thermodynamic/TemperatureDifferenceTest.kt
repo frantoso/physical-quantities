@@ -1,7 +1,8 @@
 package io.github.frantoso.physicalquantities.thermodynamic
 
+import io.github.frantoso.physicalquantities.testUtils.STANDARD_OFFSET
+import io.github.frantoso.physicalquantities.utils.toBigDecimal
 import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.data.Offset
 import kotlin.test.Test
 
 @Suppress("NonAsciiCharacters")
@@ -10,21 +11,21 @@ class TemperatureDifferenceTest {
     fun `test initialisation`() {
         val difference = TemperatureDifference.fromDegrees(10)
 
-        assertThat(difference.degrees).isEqualTo(10.0)
+        assertThat(difference.degrees).isEqualTo(10.toBigDecimal())
     }
 
     @Test
     fun `test initialisation from literal (°)`() {
         val difference = 17.23.`°`
 
-        assertThat(difference.degrees).isEqualTo(17.23)
+        assertThat(difference.degrees).isEqualTo(17.23.toBigDecimal())
     }
 
     @Test
     fun `test initialisation from literal (Degrees)`() {
         val difference = 27.23.Degrees
 
-        assertThat(difference.degrees).isEqualTo(27.23)
+        assertThat(difference.degrees).isEqualTo(27.23.toBigDecimal())
     }
 
     @Test
@@ -33,8 +34,8 @@ class TemperatureDifferenceTest {
 
         val result = temperature + 5.`°`
 
-        assertThat(result.kelvin).isCloseTo(298.15, Offset.offset(0.00000001))
-        assertThat(result.Celsius.value).isCloseTo(25.0, Offset.offset(0.00000001))
+        assertThat(result.kelvin).isCloseTo(298.15.toBigDecimal(), STANDARD_OFFSET)
+        assertThat(result.Celsius.value).isCloseTo(25.toBigDecimal(), STANDARD_OFFSET)
     }
 
     @Test
@@ -43,7 +44,7 @@ class TemperatureDifferenceTest {
 
         val result = temperature - 5.`°`
 
-        assertThat(result.kelvin).isCloseTo(288.15, Offset.offset(0.00000001))
-        assertThat(result.Celsius.value).isCloseTo(15.0, Offset.offset(0.00000001))
+        assertThat(result.kelvin).isCloseTo(288.15.toBigDecimal(), STANDARD_OFFSET)
+        assertThat(result.Celsius.value).isCloseTo(15.toBigDecimal(), STANDARD_OFFSET)
     }
 }

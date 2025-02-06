@@ -4,8 +4,9 @@ import io.github.frantoso.physicalquantities.electrical.Power
 import io.github.frantoso.physicalquantities.electrical.V
 import io.github.frantoso.physicalquantities.electrical.Voltage
 import io.github.frantoso.physicalquantities.electrical.W
+import io.github.frantoso.physicalquantities.testUtils.STANDARD_OFFSET
+import io.github.frantoso.physicalquantities.utils.toBigDecimal
 import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.data.Offset
 import org.junit.jupiter.api.DynamicTest
 import org.junit.jupiter.api.TestFactory
 
@@ -33,7 +34,7 @@ class PrefixesTest {
             DynamicTest.dynamicTest("${"%02d".format(index)} - result is $expected") {
                 val result = inputFunc()
 
-                assertThat(result).isEqualTo(expected)
+                assertThat(result).isEqualTo(expected.toBigDecimal())
             }
         }
 
@@ -60,7 +61,7 @@ class PrefixesTest {
             DynamicTest.dynamicTest("${"%02d".format(index)} - result is $expected") {
                 val result = inputFunc()
 
-                assertThat(result).isCloseTo(expected, Offset.offset(0.000_000_000_000_001))
+                assertThat(result).isCloseTo(expected.toBigDecimal(), STANDARD_OFFSET)
             }
         }
 
@@ -87,7 +88,7 @@ class PrefixesTest {
             DynamicTest.dynamicTest("${"%02d".format(index)} - result is $expected") {
                 val result = inputFunc()
 
-                assertThat(result).isEqualTo(expected)
+                assertThat(result).isEqualTo(expected.toBigDecimal())
             }
         }
 
@@ -114,7 +115,7 @@ class PrefixesTest {
             DynamicTest.dynamicTest("${"%02d".format(index)} - result is $expected") {
                 val result = inputFunc()
 
-                assertThat(result).isCloseTo(expected, Offset.offset(0.000_000_000_000_001))
+                assertThat(result).isCloseTo(expected.toBigDecimal(), STANDARD_OFFSET)
             }
         }
 
@@ -130,7 +131,7 @@ class PrefixesTest {
                 val result = inputFunc()
 
                 assertThat(result).isInstanceOf(expected::class.java)
-                assertThat(result.value).isCloseTo(expected.value, Offset.offset(0.000_000_000_000_001))
+                assertThat(result.value).isCloseTo(expected.value, STANDARD_OFFSET)
             }
         }
 }

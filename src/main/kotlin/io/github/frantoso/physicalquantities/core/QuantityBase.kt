@@ -1,6 +1,7 @@
 package io.github.frantoso.physicalquantities.core
 
-import kotlin.math.sign
+import io.github.frantoso.physicalquantities.utils.toBigDecimal
+import java.math.BigDecimal
 
 /**
  * Base class for quantities.
@@ -9,13 +10,18 @@ import kotlin.math.sign
  * @constructor Initializes a new instance of the [QuantityBase] class.
  */
 abstract class QuantityBase protected constructor(
-    internal val value: Double,
+    value: Number,
 ) {
+    /**
+     * Gets the raw value stored in this instance. Raw values unit is the reference unit of the quantity.
+     */
+    internal val value: BigDecimal = value.toBigDecimal()
+
     /**
      * Returns `true` if this instance is equal to [other]; `false` otherwise.
      */
     override fun equals(other: Any?): Boolean =
-        (other != null) && (this::class == other::class) && value.equals((other as QuantityBase).value)
+        (other != null) && (this::class == other::class) && value.compareTo((other as QuantityBase).value) == 0
 
     /**
      * Returns a hash code value for the object.
@@ -36,5 +42,5 @@ abstract class QuantityBase protected constructor(
      * Special case:
      *   - `NaN.sign` is `NaN`
      */
-    val sign: Double = value.sign
+    val sign: Int = this.value.signum()
 }

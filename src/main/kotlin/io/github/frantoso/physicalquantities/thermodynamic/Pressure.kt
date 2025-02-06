@@ -6,6 +6,8 @@ import io.github.frantoso.physicalquantities.core.ScaledQuantity
 import io.github.frantoso.physicalquantities.core.SimpleQuantity
 import io.github.frantoso.physicalquantities.core.ValueWithUnit
 import io.github.frantoso.physicalquantities.core.valueWithUnit
+import io.github.frantoso.physicalquantities.utils.toBigDecimal
+import java.math.BigDecimal
 
 /**
  * A class to hold a type and unit safe pressure value in Pascal (Pa).
@@ -18,7 +20,7 @@ class Pressure private constructor(
     /**
      * Gets the raw value in Pascal (Pa).
      */
-    val pascal: Double get() = value
+    val pascal: BigDecimal get() = value
 
     /**
      * Helper method to be able to generally create a new instance of the right unit type.
@@ -66,16 +68,16 @@ val Number.Pa: Pressure get() = Pressure.fromPascal(this)
 /**
  * Converts a number holding a bar value to a [Pressure] instance.
  */
-val Number.bar: Pressure get() = Pressure.fromPascal(toDouble() * 100_000.0)
+val Number.bar: Pressure get() = Pressure.fromPascal(toBigDecimal().multiply(BigDecimal(100_000)))
 
 /**
  * Creates a pair of a value and associated unit from a scaled pressure quantity and the unit.
  */
 val ScaledQuantity<Pressure>.Pa get() = valueWithUnit(this, Pressure.BASE_SYMBOL)
-val ScaledQuantity<Pressure>.bar get() = valueWithUnit(this, "bar") { value -> value / 100_000.0 }
+val ScaledQuantity<Pressure>.bar get() = valueWithUnit(this, "bar") { value -> value.divide(BigDecimal(100_000)) }
 
 /**
  * Creates a pair of a value and associated unit from a non-scaled pressure quantity and the unit.
  */
 val Pressure.Pa get() = valueWithUnit(Pressure.BASE_SYMBOL)
-val Pressure.bar get() = valueWithUnit("bar") { value -> value / 100_000.0 }
+val Pressure.bar get() = valueWithUnit("bar") { value -> value.divide(BigDecimal(100_000)) }

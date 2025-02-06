@@ -2,6 +2,7 @@ package io.github.frantoso.physicalquantities.electrical
 
 import io.github.frantoso.physicalquantities.core.ValueWithUnit
 import io.github.frantoso.physicalquantities.core._m
+import io.github.frantoso.physicalquantities.utils.toBigDecimal
 import org.assertj.core.api.Assertions.assertThat
 import kotlin.test.Test
 
@@ -10,21 +11,21 @@ class ChargeTest {
     fun `test initialisation`() {
         val charge = Charge.fromCoulomb(24)
 
-        assertThat(charge.coulomb).isEqualTo(24.0)
+        assertThat(charge.coulomb).isEqualTo(24.toBigDecimal())
     }
 
     @Test
     fun `test initialisation from literal`() {
         val charge = 24.C
 
-        assertThat(charge.coulomb).isEqualTo(24.0)
+        assertThat(charge.coulomb).isEqualTo(24.toBigDecimal())
     }
 
     @Test
     fun `test createFromValue`() {
         val charge = -(24.C) // base class calls createFromValue()
 
-        assertThat(charge.coulomb).isEqualTo(-24.0)
+        assertThat(charge.coulomb).isEqualTo((-24).toBigDecimal())
     }
 
     @Test
@@ -33,7 +34,7 @@ class ChargeTest {
 
         val result = charge.C
 
-        assertThat(result).isEqualTo(ValueWithUnit(32.0, "", "C"))
+        assertThat(result).isEqualTo(ValueWithUnit(32, "", "C"))
     }
 
     @Test
@@ -42,7 +43,7 @@ class ChargeTest {
 
         val result = charge._m.C
 
-        assertThat(result).isEqualTo(ValueWithUnit(42000.0, "m", "C"))
+        assertThat(result).isEqualTo(ValueWithUnit(42000, "m", "C"))
     }
 
     @Test

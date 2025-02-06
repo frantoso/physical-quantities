@@ -1,8 +1,8 @@
 package io.github.frantoso.physicalquantities.core
 
 import io.github.frantoso.physicalquantities.electrical.A
+import io.github.frantoso.physicalquantities.testUtils.STANDARD_OFFSET
 import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.data.Offset
 import org.junit.jupiter.api.DynamicTest
 import org.junit.jupiter.api.TestFactory
 
@@ -29,7 +29,7 @@ class PostfixesTest {
         ).mapIndexed { index, (input, expected) ->
             DynamicTest.dynamicTest("${"%02d".format(index)} - result is $expected (${expected.symbolPrefix})") {
                 assertThat(input.quantity).isEqualTo(expected.quantity)
-                assertThat(input.scaleFactor).isCloseTo(expected.scaleFactor, Offset.offset(0.000_000_000_000_01))
+                assertThat(input.scaleFactor).isCloseTo(expected.scaleFactor, STANDARD_OFFSET)
                 assertThat(input.quantity::class).isSameAs(expected.quantity::class)
             }
         }
@@ -56,7 +56,7 @@ class PostfixesTest {
         ).mapIndexed { index, (input, expected) ->
             DynamicTest.dynamicTest("${"%02d".format(index)} - result is $expected (${expected.symbolPrefix})") {
                 assertThat(input.quantity).isEqualTo(expected.quantity)
-                assertThat(input.scaleFactor).isCloseTo(expected.scaleFactor, Offset.offset(0.000_000_000_000_01))
+                assertThat(input.scaleFactor).isCloseTo(expected.scaleFactor, STANDARD_OFFSET)
                 assertThat(input.quantity::class).isSameAs(expected.quantity::class)
             }
         }

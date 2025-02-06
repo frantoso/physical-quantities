@@ -1,19 +1,21 @@
 package io.github.frantoso.physicalquantities.core
 
 import io.github.frantoso.physicalquantities.thermodynamic.TemperatureDifference
+import io.github.frantoso.physicalquantities.utils.toBigDecimal
 import org.assertj.core.api.Assertions.assertThat
 import kotlin.test.Test
 
 class SimpleDifferenceTest {
     class TestDiff(
         value: Number,
-    ) : SimpleDifference<TestDiff>(value.toDouble(), "x")
+    ) : SimpleDifference<TestDiff>(value, "x")
 
     @Test
     fun `test initialisation`() {
         val difference = TemperatureDifference.fromDegrees(10)
 
-        assertThat(difference.degrees).isEqualTo(10.0)
+        assertThat(difference.degrees).isEqualTo(10.toBigDecimal())
+        assertThat(difference.unitSymbol).isEqualTo("°")
     }
 
     @Test

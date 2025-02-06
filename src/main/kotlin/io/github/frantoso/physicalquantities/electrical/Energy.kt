@@ -6,6 +6,8 @@ import io.github.frantoso.physicalquantities.core.ScaledQuantity
 import io.github.frantoso.physicalquantities.core.SimpleQuantity
 import io.github.frantoso.physicalquantities.core.ValueWithUnit
 import io.github.frantoso.physicalquantities.core.valueWithUnit
+import io.github.frantoso.physicalquantities.utils.toBigDecimal
+import java.math.BigDecimal
 
 /**
  * A class to hold a type and unit safe energy value in Joule (J).
@@ -18,7 +20,7 @@ class Energy private constructor(
     /**
      * Gets the raw value in Ohm (O).
      */
-    val joule: Double get() = value
+    val joule: BigDecimal get() = value
 
     /**
      * Helper method to be able to generally create a new instance of the right unit type.
@@ -64,18 +66,18 @@ class Energy private constructor(
  */
 val Number.J: Energy get() = Energy.fromJoule(this)
 val Number.Ws: Energy get() = Energy.fromJoule(this)
-val Number.Wh: Energy get() = Energy.fromJoule(this.toDouble() * 3_600.0)
+val Number.Wh: Energy get() = Energy.fromJoule(toBigDecimal().multiply(BigDecimal(3_600)))
 
 /**
  * Creates a pair of a value and associated unit from a scaled energy quantity and the unit.
  */
 val ScaledQuantity<Energy>.J get() = valueWithUnit(this, Energy.BASE_SYMBOL)
 val ScaledQuantity<Energy>.Ws get() = valueWithUnit(this, "Ws")
-val ScaledQuantity<Energy>.Wh get() = valueWithUnit(this, "Wh") { value -> value / 3_600.0 }
+val ScaledQuantity<Energy>.Wh get() = valueWithUnit(this, "Wh") { value -> value.divide(BigDecimal(3_600)) }
 
 /**
  * Creates a pair of a value and associated unit from a non-scaled energy quantity and the unit.
  */
 val Energy.J get() = valueWithUnit(Energy.BASE_SYMBOL)
 val Energy.Ws get() = valueWithUnit("Ws")
-val Energy.Wh get() = valueWithUnit("Wh") { value -> value / 3_600.0 }
+val Energy.Wh get() = valueWithUnit("Wh") { value -> value.divide(BigDecimal(3_600)) }

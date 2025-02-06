@@ -12,7 +12,7 @@ import io.github.frantoso.physicalquantities.utils.defaultNumberFormatter
 abstract class SimpleDifference<DiffType : QuantityBase> protected constructor(
     value: Number,
     val unitSymbol: String,
-) : QuantityBase(value.toDouble()),
+) : QuantityBase(value),
     Comparable<DiffType> {
     /**
      * Returns a string representation of the object (it's value and base unit).

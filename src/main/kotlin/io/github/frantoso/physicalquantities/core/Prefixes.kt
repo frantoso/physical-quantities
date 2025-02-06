@@ -2,22 +2,25 @@
 
 package io.github.frantoso.physicalquantities.core
 
-val Number.atto get() = this.toDouble() * Prefix.ATTO.factorToBase
-val Number.femto get() = this.toDouble() * Prefix.FEMTO.factorToBase
-val Number.pico get() = this.toDouble() * Prefix.PICO.factorToBase
-val Number.nano get() = this.toDouble() * Prefix.NANO.factorToBase
-val Number.micro get() = this.toDouble() * Prefix.MICRO.factorToBase
-val Number.milli get() = this.toDouble() * Prefix.MILLI.factorToBase
-val Number.centi get() = this.toDouble() * Prefix.CENTI.factorToBase
-val Number.deci get() = this.toDouble() * Prefix.DECI.factorToBase
-val Number.deca get() = this.toDouble() * Prefix.DECA.factorToBase
-val Number.hecto get() = this.toDouble() * Prefix.HECTO.factorToBase
-val Number.kilo get() = this.toDouble() * Prefix.KILO.factorToBase
-val Number.mega get() = this.toDouble() * Prefix.MEGA.factorToBase
-val Number.giga get() = this.toDouble() * Prefix.GIGA.factorToBase
-val Number.tera get() = this.toDouble() * Prefix.TERA.factorToBase
-val Number.peta get() = this.toDouble() * Prefix.PETA.factorToBase
-val Number.exa get() = this.toDouble() * Prefix.EXA.factorToBase
+import io.github.frantoso.physicalquantities.utils.toBigDecimal
+import java.math.BigDecimal
+
+val Number.atto: BigDecimal get() = toBigDecimal().multiply(Prefix.ATTO.factorToBase)
+val Number.femto: BigDecimal get() = toBigDecimal().multiply(Prefix.FEMTO.factorToBase)
+val Number.pico: BigDecimal get() = toBigDecimal().multiply(Prefix.PICO.factorToBase)
+val Number.nano: BigDecimal get() = toBigDecimal().multiply(Prefix.NANO.factorToBase)
+val Number.micro: BigDecimal get() = toBigDecimal().multiply(Prefix.MICRO.factorToBase)
+val Number.milli: BigDecimal get() = toBigDecimal().multiply(Prefix.MILLI.factorToBase)
+val Number.centi: BigDecimal get() = toBigDecimal().multiply(Prefix.CENTI.factorToBase)
+val Number.deci: BigDecimal get() = toBigDecimal().multiply(Prefix.DECI.factorToBase)
+val Number.deca: BigDecimal get() = toBigDecimal().multiply(Prefix.DECA.factorToBase)
+val Number.hecto: BigDecimal get() = toBigDecimal().multiply(Prefix.HECTO.factorToBase)
+val Number.kilo: BigDecimal get() = toBigDecimal().multiply(Prefix.KILO.factorToBase)
+val Number.mega: BigDecimal get() = toBigDecimal().multiply(Prefix.MEGA.factorToBase)
+val Number.giga: BigDecimal get() = toBigDecimal().multiply(Prefix.GIGA.factorToBase)
+val Number.tera: BigDecimal get() = toBigDecimal().multiply(Prefix.TERA.factorToBase)
+val Number.peta: BigDecimal get() = toBigDecimal().multiply(Prefix.PETA.factorToBase)
+val Number.exa: BigDecimal get() = toBigDecimal().multiply(Prefix.EXA.factorToBase)
 
 val Number._a get() = this.atto
 val Number._f get() = this.femto

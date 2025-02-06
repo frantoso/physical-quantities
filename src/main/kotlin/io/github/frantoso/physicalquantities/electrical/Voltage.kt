@@ -6,6 +6,7 @@ import io.github.frantoso.physicalquantities.core.ScaledQuantity
 import io.github.frantoso.physicalquantities.core.SimpleQuantity
 import io.github.frantoso.physicalquantities.core.ValueWithUnit
 import io.github.frantoso.physicalquantities.core.valueWithUnit
+import java.math.BigDecimal
 
 /**
  * A class to hold a type and unit safe voltage value in Volt (V).
@@ -17,7 +18,7 @@ class Voltage private constructor(
     /**
      * Gets the raw value in Volt (V).
      */
-    val volt: Double get() = value
+    val volt: BigDecimal get() = value
 
     /**
      * Helper method to be able to generally create a new instance of the right unit type.

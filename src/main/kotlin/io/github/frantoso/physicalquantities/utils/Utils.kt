@@ -1,5 +1,6 @@
 package io.github.frantoso.physicalquantities.utils
 
+import java.math.BigDecimal
 import java.text.NumberFormat
 import java.util.Locale
 
@@ -34,3 +35,10 @@ fun setDefaultNumberFormatter(formatter: NumberFormat) {
 fun resetDefaultNumberFormatter() {
     defaultNumberFormatter = createDefaultNumberFormatter()
 }
+
+/**
+ * Converts this [Number] value to [BigDecimal].
+ * @return Returns the resulting [BigDecimal] value represents the
+ * same numerical value as this [Number].
+ */
+fun Number.toBigDecimal(): BigDecimal = BigDecimal(toString())

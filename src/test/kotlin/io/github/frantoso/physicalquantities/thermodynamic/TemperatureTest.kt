@@ -4,8 +4,9 @@ import io.github.frantoso.physicalquantities.core.ValueWithUnit
 import io.github.frantoso.physicalquantities.core._c
 import io.github.frantoso.physicalquantities.core._k
 import io.github.frantoso.physicalquantities.core._m
+import io.github.frantoso.physicalquantities.testUtils.STANDARD_OFFSET
+import io.github.frantoso.physicalquantities.utils.toBigDecimal
 import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.data.Offset
 import org.junit.jupiter.api.DynamicTest
 import org.junit.jupiter.api.TestFactory
 import kotlin.test.Test
@@ -16,35 +17,35 @@ class TemperatureTest {
     fun `test initialisation`() {
         val temperature = Temperature.fromKelvin(280)
 
-        assertThat(temperature.kelvin).isEqualTo(280.0)
+        assertThat(temperature.kelvin).isEqualTo(280.toBigDecimal())
     }
 
     @Test
     fun `test initialisation from literal (K)`() {
         val temperature = 280.K
 
-        assertThat(temperature.kelvin).isEqualTo(280.0)
+        assertThat(temperature.kelvin).isEqualTo(280.toBigDecimal())
     }
 
     @Test
     fun `test initialisation from literal (°C)`() {
         val temperature = 17.`°C`
 
-        assertThat(temperature.kelvin).isCloseTo(290.15, Offset.offset(0.00000001))
+        assertThat(temperature.kelvin).isCloseTo(290.15.toBigDecimal(), STANDARD_OFFSET)
     }
 
     @Test
     fun `test initialisation from literal (Celsius)`() {
         val temperature = 27.Celsius
 
-        assertThat(temperature.kelvin).isCloseTo(300.15, Offset.offset(0.00000001))
+        assertThat(temperature.kelvin).isCloseTo(300.15.toBigDecimal(), STANDARD_OFFSET)
     }
 
     @Test
     fun `test createFromValue`() {
         val temperature = -(24.K) // base class calls createFromValue()
 
-        assertThat(temperature.kelvin).isEqualTo(-24.0)
+        assertThat(temperature.kelvin).isEqualTo((-24).toBigDecimal())
     }
 
     @Test
@@ -71,7 +72,7 @@ class TemperatureTest {
 
         val result = temperature.Celsius
 
-        assertThat(result.value).isCloseTo(46.85, Offset.offset(0.00000001))
+        assertThat(result.value).isCloseTo(46.85.toBigDecimal(), STANDARD_OFFSET)
         assertThat(result.symbolPrefix).isEqualTo("")
         assertThat(result.symbolUnit).isEqualTo("°C")
     }
@@ -91,7 +92,7 @@ class TemperatureTest {
 
         val result = temperature.`°C`
 
-        assertThat(result.value).isCloseTo(46.85, Offset.offset(0.00000001))
+        assertThat(result.value).isCloseTo(46.85.toBigDecimal(), STANDARD_OFFSET)
         assertThat(result.symbolPrefix).isEqualTo("")
         assertThat(result.symbolUnit).isEqualTo("°C")
     }

@@ -6,6 +6,7 @@ import io.github.frantoso.physicalquantities.core.ScaledQuantity
 import io.github.frantoso.physicalquantities.core.SimpleQuantity
 import io.github.frantoso.physicalquantities.core.ValueWithUnit
 import io.github.frantoso.physicalquantities.core.valueWithUnit
+import java.math.BigDecimal
 
 /**
  * A class to hold a type and unit safe frequency value in Hertz(Hz)
@@ -18,7 +19,7 @@ class Frequency private constructor(
     /**
      * Gets the raw value in Hertz (Hz).
      */
-    val hertz: Double get() = value
+    val hertz: BigDecimal get() = value
 
     /**
      * Helper method to be able to generally create a new instance of the right unit type.

@@ -9,7 +9,7 @@ kotlin {
 }
 
 dependencies {
-    implementation("com.github.jillesvangurp:kotlin4example:1.1.6")
+    testImplementation("com.github.jillesvangurp:kotlin4example:1.1.6")
 }
 
 repositories {

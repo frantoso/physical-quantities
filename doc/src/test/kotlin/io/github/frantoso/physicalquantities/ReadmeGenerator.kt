@@ -54,7 +54,7 @@ class ReadmeGenerator {
                     """
                     The library physical quantities is distributed via MavenCentral.
                     
-                    There are two versions available. The difference is the data type used to store the values. One
+                    There are two versions available. The difference lies in the data type used to store the values. One
                     version supports Double and the other BigDecimal.
                     
                     **build.gradle.kts (Double)**
@@ -93,7 +93,7 @@ class ReadmeGenerator {
                 subSection("Create a quantity")
                 +
                     """
-                    Quantities can be created by a member function of a special quantity or via a unit.
+                    Quantities can be created by a member function of a quantity type or by a unit.
                     
                     e.g.
                     """.trimIndent()
@@ -102,15 +102,15 @@ class ReadmeGenerator {
                 }
                 +
                     """
-                    Is the same as
+                    is the same as
                     """.trimIndent()
                 example {
                     val current = 12.A
                 }
                 +
                     """
-                    To handle small and big values modifiers are provided as prefixes. There is a long and a short 
-                    form available.
+                    To handle small and large values, modifiers are provided as prefixes. A long and a short
+                    form is available.
                     
                     Long variant:
                     """.trimIndent()
@@ -126,7 +126,7 @@ class ReadmeGenerator {
                 }
                 +
                     """
-                    Short-form prefixes have a leading underscore to be able to differentiate a prefix from a unit.
+                    Short form prefixes have a leading underscore to distinguish a prefix from a unit.
                     """.trimIndent()
 
                 subSection("Examples")
@@ -138,6 +138,8 @@ class ReadmeGenerator {
                     val power = 23.V * 42.A
 
                     assertThat(power).isEqualTo(966.W)
+                    assertThat(power).isNotEqualTo(966.V)
+                    assertThat(power).isNotEqualTo(966.A)
                 }
                 +
                     """
@@ -154,10 +156,10 @@ class ReadmeGenerator {
                 section("Contributing")
                 +
                     """
-                    Currently the library contains a few quantities only (what I need most). Help in extending
-                    the lib is welcome.
+                    Currently the library only contains a few quantities (which is what I need most).
+                    Help in expanding the library is appreciated.
                     
-                    If you think something is missing (I'm sure there's a lot), prepare a pull request.
+                    If you think something is missing (I'm sure there is a lot), prepare a pull request.
                     """.trimIndent()
             }
 

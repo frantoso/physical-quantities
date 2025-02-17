@@ -1,2 +1,2 @@
 rootProject.name = "physical-quantities"
-include("double", "big-decimal")
+include("double", "big-decimal", "doc")

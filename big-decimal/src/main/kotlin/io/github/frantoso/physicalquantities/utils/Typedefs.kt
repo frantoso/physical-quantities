@@ -5,6 +5,7 @@
 package io.github.frantoso.physicalquantities.utils
 
 import java.math.BigDecimal
+import java.math.MathContext
 import java.math.RoundingMode
 
 /**
@@ -26,8 +27,10 @@ fun Number.toRawType(): BigDecimal = BigDecimal(toString())
  *
  * The name of the function must be different from the [Double] and [BigDecimal] implementation
  * to have the same imports at the place of use.
+ * The precision is limited to a decimal 128-bit number equivalent to prevent of exceptions at
+ * divisions with infinite decimal places.
  */
-fun BigDecimal.divideBy(divisor: BigDecimal): BigDecimal = divide(divisor)
+fun BigDecimal.divideBy(divisor: BigDecimal): BigDecimal = divide(divisor, MathContext.DECIMAL128)
 
 /**
  * Round this [BigDecimal] mathematically to the next [Int].

@@ -3,6 +3,8 @@ package io.github.frantoso.physicalquantities.electrical
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DynamicTest
 import org.junit.jupiter.api.TestFactory
+import org.junit.jupiter.api.assertDoesNotThrow
+import kotlin.test.Test
 import kotlin.time.Duration.Companion.seconds
 
 class OperationsTest {
@@ -65,4 +67,9 @@ class OperationsTest {
                 assertThat(result).isEqualTo(expected)
             }
         }
+
+    @Test
+    fun `calculation with unlimited decimal places does not throw exception`() {
+        assertDoesNotThrow { 2.W / 3.A }
+    }
 }

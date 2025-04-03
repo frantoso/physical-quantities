@@ -32,6 +32,22 @@ class QuantityBaseTest {
         }
 
     @TestFactory
+    fun `test equalsByPrecision`() =
+        listOf(
+            TestBaseQuantity(42.0) to true,
+            TestBaseQuantity(42.0001) to true,
+            TestBaseQuantity(41.9991) to true,
+            OtherTestBaseQuantity(42.0) to false,
+            null to false,
+        ).mapIndexed { index, (other, expected) ->
+            DynamicTest.dynamicTest("${"%02d".format(index)} - result is $expected") {
+                val value1 = TestBaseQuantity(42)
+
+                assertThat(value1.equalsByPrecision(other)).isEqualTo(expected)
+            }
+        }
+
+    @TestFactory
     fun `test hashCode`() =
         listOf(
             TestBaseQuantity(42.0) to 42.toRawType().hashCode(),

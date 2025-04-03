@@ -1,6 +1,8 @@
 package io.github.frantoso.physicalquantities.core
 
 import io.github.frantoso.physicalquantities.utils.RawType
+import io.github.frantoso.physicalquantities.utils.absoluteValue
+import io.github.frantoso.physicalquantities.utils.defaultPrecisionFraction
 import io.github.frantoso.physicalquantities.utils.hash
 import io.github.frantoso.physicalquantities.utils.sgn
 import io.github.frantoso.physicalquantities.utils.toRawType
@@ -24,6 +26,16 @@ abstract class QuantityBase protected constructor(
      */
     override fun equals(other: Any?): Boolean =
         (other != null) && (this::class == other::class) && value.compareTo((other as QuantityBase).value) == 0
+
+    /**
+     * Returns `true` if the absolute difference between this instance and [other] is smaller than [precisionFraction];
+     * `false` otherwise. The default of [precisionFraction] is [defaultPrecisionFraction].
+     */
+    fun equalsByPrecision(
+        other: Any?,
+        precisionFraction: RawType = defaultPrecisionFraction,
+    ): Boolean =
+        (other != null) && (this::class == other::class) && ((value - (other as QuantityBase).value).absoluteValue < precisionFraction)
 
     /**
      * Returns a hash code value for the object.

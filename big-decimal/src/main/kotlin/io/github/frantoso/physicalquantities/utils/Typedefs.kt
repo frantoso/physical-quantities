@@ -48,3 +48,5 @@ fun BigDecimal.round(): Int = setScale(0, RoundingMode.HALF_EVEN).toInt()
 val BigDecimal.sgn: Int get() = signum()
 
 val BigDecimal.hash: Int get() = stripTrailingZeros().hashCode()
+
+val BigDecimal.absoluteValue: BigDecimal get() = abs()

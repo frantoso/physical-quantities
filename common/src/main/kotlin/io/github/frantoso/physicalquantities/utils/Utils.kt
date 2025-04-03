@@ -34,3 +34,23 @@ fun setDefaultNumberFormatter(formatter: NumberFormat) {
 fun resetDefaultNumberFormatter() {
     defaultNumberFormatter = createDefaultNumberFormatter()
 }
+
+/**
+ * Gets the default precision fraction used at several places in the library (initial value: 0.001).
+ */
+var defaultPrecisionFraction = 0.001.toRawType()
+    private set
+
+/**
+ * Sets the default precision fraction to [precisionFraction].
+ */
+fun setDefaultPrecisionFraction(precisionFraction: RawType) {
+    defaultPrecisionFraction = precisionFraction
+}
+
+/**
+ * Resets the default precision fraction to the library default.
+ */
+fun resetDefaultPrecisionFraction() {
+    defaultPrecisionFraction = 0.001.toRawType()
+}

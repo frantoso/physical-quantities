@@ -2,9 +2,12 @@
  * This file sets the raw type to Double and provides functions and properties which
  * are different for the supported raw types (e.g. Double.sign and BigDecimal.signum()).
  */
+@file:Suppress("unused")
+
 package io.github.frantoso.physicalquantities.utils
 
 import java.math.BigDecimal
+import kotlin.math.abs
 import kotlin.math.roundToInt
 import kotlin.math.sign
 
@@ -45,3 +48,5 @@ fun Double.round(): Int = kotlin.math.round(this).toInt() // roundToInt()
 val Double.sgn: Int get() = sign.roundToInt()
 
 val Double.hash: Int get() = hashCode()
+
+val Double.absoluteValue: Double get() = abs(this)

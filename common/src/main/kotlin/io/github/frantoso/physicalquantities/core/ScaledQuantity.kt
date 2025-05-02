@@ -18,7 +18,7 @@ class ScaledQuantity<T : QuantityBase>(
     val symbolPrefix: String,
 ) {
     /**
-     * Gets the scale factor to apply to the quantities value.
+     * Gets the scale factor to apply to the quantity's value.
      */
     val scaleFactor: RawType = scaleFactor.toRawType()
 
@@ -37,6 +37,11 @@ class ScaledQuantity<T : QuantityBase>(
      * Returns a hash code value for the object.
      */
     override fun hashCode(): Int = quantity.hashCode() xor symbolPrefix.hashCode() xor scaleFactor.hash
+
+    /**
+     * Returns a string representation of the object.
+     */
+    override fun toString(): String = "$quantity -> ${quantity.value * scaleFactor} $symbolPrefix"
 }
 
 /**

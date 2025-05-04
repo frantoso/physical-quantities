@@ -7,9 +7,10 @@ import io.github.frantoso.physicalquantities.core.SimpleQuantity
 import io.github.frantoso.physicalquantities.core.ValueWithUnit
 import io.github.frantoso.physicalquantities.core.valueWithUnit
 import io.github.frantoso.physicalquantities.utils.RawType
+import io.github.frantoso.physicalquantities.utils.toRawType
 
 /**
- * A class to hold a type and unit safe frequency value in Hertz(Hz)
+ * A class to hold a type and unit safe frequency value in Hertz (Hz)
  * @param value The raw value.
  */
 class Frequency private constructor(
@@ -51,7 +52,11 @@ class Frequency private constructor(
         /**
          * Gets a list of creator functions to generate a new instance from a symbol.
          */
-        private val creators = listOf(CreatorInfo(BASE_SYMBOL) { value -> value.Hz })
+        private val creators =
+            listOf(
+                CreatorInfo(BASE_SYMBOL) { value -> value.Hz },
+                CreatorInfo("rpm") { value -> value.rpm },
+            )
     }
 }
 
@@ -61,11 +66,18 @@ class Frequency private constructor(
 val Number.Hz: Frequency get() = Frequency.fromHertz(this)
 
 /**
+ * Converts a number holding a rpm value to a [Frequency] instance.
+ */
+val Number.rpm: Frequency get() = Frequency.fromHertz(this.toRawType().div(60.toRawType()))
+
+/**
  * Creates a pair of a value and associated unit from a scaled frequency quantity and 'Hz'.
  */
 val ScaledQuantity<Frequency>.Hz get() = valueWithUnit(this, Frequency.BASE_SYMBOL)
+val ScaledQuantity<Frequency>.rpm get() = valueWithUnit(this, "rpm") { value -> value.times(60.toRawType()) }
 
 /**
  * Creates a pair of a value and associated unit from a non-scaled frequency quantity and 'Hz'.
  */
 val Frequency.Hz get() = valueWithUnit(Frequency.BASE_SYMBOL)
+val Frequency.rpm get() = valueWithUnit("rpm") { value -> value.times(60.toRawType()) }

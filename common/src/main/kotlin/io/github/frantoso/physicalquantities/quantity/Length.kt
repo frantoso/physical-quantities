@@ -34,7 +34,7 @@ class Length private constructor(
 
         /**
          * Converts a number holding a length value to a [Length] instance.
-         * @param value The number to interpret as Coulomb.
+         * @param value The number to interpret as Meter.
          * @return Returns a [Length] instance.
          */
         fun fromMeter(value: Number): Length = Length(value)

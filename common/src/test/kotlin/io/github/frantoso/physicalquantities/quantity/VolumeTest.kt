@@ -2,7 +2,7 @@ package io.github.frantoso.physicalquantities.quantity
 
 import io.github.frantoso.physicalquantities.core.ScaledQuantity
 import io.github.frantoso.physicalquantities.core.ValueWithUnit
-import io.github.frantoso.physicalquantities.core._M
+import io.github.frantoso.physicalquantities.core._h
 import io.github.frantoso.physicalquantities.core._k
 import io.github.frantoso.physicalquantities.core._m
 import io.github.frantoso.physicalquantities.utils.toRawType
@@ -11,41 +11,42 @@ import org.junit.jupiter.api.DynamicTest
 import org.junit.jupiter.api.TestFactory
 import kotlin.test.Test
 
-class FrequencyTest {
+class VolumeTest {
     @Test
     fun `test initialisation`() {
-        val frequency = Frequency.fromHertz(24)
+        val volume = Volume.fromLiter(24)
 
-        assertThat(frequency.hertz).isEqualTo(24.toRawType())
+        assertThat(volume.liter).isEqualTo(24.toRawType())
     }
 
     @Test
     fun `test createFromValue`() {
-        val frequency = -(24.Hz) // base class calls createFromValue()
+        val volume = -(24.l) // base class calls createFromValue()
 
-        assertThat(frequency.hertz).isEqualTo((-24).toRawType())
+        assertThat(volume.liter).isEqualTo((-24).toRawType())
     }
 
     @TestFactory
     fun `test initialisation from literal`() =
         listOf(
-            24.Hz to 24,
-            24._k.Hz to 24000,
-            60.rpm to 1,
+            24.l to 24,
+            60._h.l to 6000,
+            60._m.l to 0.06,
         ).mapIndexed { index, (input, expected) ->
             DynamicTest.dynamicTest("${"%02d".format(index)} expected result: $expected") {
-                assertThat(input.hertz.compareTo(expected.toRawType())).isEqualTo(0)
+                assertThat(input.liter.compareTo(expected.toRawType())).isEqualTo(0)
             }
         }
 
     @TestFactory
     fun `from value with unit`() =
         listOf(
-            ValueWithUnit(2.3, "M", "Hz") to 2.3._M.Hz,
-            ValueWithUnit(1800, "", "rpm") to 30.Hz,
+            ValueWithUnit(42, "", "l") to 42.l,
+            ValueWithUnit(2.3, "k", "l") to 2.3._k.l,
+            ValueWithUnit(1800, "m", "l") to 1.8.l,
         ).mapIndexed { index, (input, expected) ->
             DynamicTest.dynamicTest("${"%02d".format(index)} expected result: $expected") {
-                val result = Frequency.fromValueWithUnit(input)
+                val result = Volume.fromValueWithUnit(input)
 
                 assertThat(result).isEqualTo(expected)
             }
@@ -54,8 +55,8 @@ class FrequencyTest {
     @TestFactory
     fun `to scaled quantity`() =
         listOf(
-            42.Hz._m to ScaledQuantity(42.Hz, 1000, "m"),
-            60.Hz._k to ScaledQuantity(60.Hz, 0.001, "k"),
+            42.l._m to ScaledQuantity(42.l, 1000, "m"),
+            60.l._k to ScaledQuantity(60.l, 0.001, "k"),
         ).mapIndexed { index, (input, expected) ->
             DynamicTest.dynamicTest("${"%02d".format(index)} expected result: $expected") {
                 assertThat(input).isEqualTo(expected)
@@ -65,12 +66,8 @@ class FrequencyTest {
     @TestFactory
     fun `to value with unit`() =
         listOf(
-            32.Hz.Hz to ValueWithUnit(32, "", "Hz"),
-            2.Hz.rpm to ValueWithUnit(120, "", "rpm"),
-            360.rpm.Hz to ValueWithUnit(6, "", "Hz"),
-            360.rpm.rpm to ValueWithUnit(360, "", "rpm"),
-            42.Hz._m.Hz to ValueWithUnit(42000, "m", "Hz"),
-            60.Hz._k.rpm to ValueWithUnit(3.6, "k", "rpm"),
+            32.l.l to ValueWithUnit(32, "", "l"),
+            42.l._m.l to ValueWithUnit(42000, "m", "l"),
         ).mapIndexed { index, (input, expected) ->
             DynamicTest.dynamicTest("${"%02d".format(index)} expected result: $expected") {
                 assertThat(input).isEqualTo(expected)

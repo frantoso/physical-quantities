@@ -7,6 +7,7 @@ import io.github.frantoso.physicalquantities.core.SimpleQuantity
 import io.github.frantoso.physicalquantities.core.ValueWithUnit
 import io.github.frantoso.physicalquantities.core.valueWithUnit
 import io.github.frantoso.physicalquantities.utils.RawType
+import io.github.frantoso.physicalquantities.utils.divideBy
 import io.github.frantoso.physicalquantities.utils.toRawType
 
 /**
@@ -86,14 +87,14 @@ val Number.mile: Length get() = Length.fromMeter(this.toRawType().times(1609.344
  * Creates a pair of a value and associated unit from a scaled length quantity and 'm'.
  */
 val ScaledQuantity<Length>.m get() = valueWithUnit(this, Length.BASE_SYMBOL)
-val ScaledQuantity<Length>.inch get() = valueWithUnit(this, "in") { value -> value.div(0.0254.toRawType()) }
-val ScaledQuantity<Length>.ft get() = valueWithUnit(this, "ft") { value -> value.div(0.3048.toRawType()) }
-val ScaledQuantity<Length>.mile get() = valueWithUnit(this, "mile") { value -> value.div(1609.344.toRawType()) }
+val ScaledQuantity<Length>.inch get() = valueWithUnit(this, "in") { value -> value.divideBy(0.0254.toRawType()) }
+val ScaledQuantity<Length>.ft get() = valueWithUnit(this, "ft") { value -> value.divideBy(0.3048.toRawType()) }
+val ScaledQuantity<Length>.mile get() = valueWithUnit(this, "mile") { value -> value.divideBy(1609.344.toRawType()) }
 
 /**
  * Creates a pair of a value and associated unit from a non-scaled length quantity and 'm'.
  */
 val Length.m get() = valueWithUnit(Length.BASE_SYMBOL)
-val Length.inch get() = valueWithUnit("in") { value -> value.div(0.0254.toRawType()) }
-val Length.ft get() = valueWithUnit("ft") { value -> value.div(0.3048.toRawType()) }
-val Length.mile get() = valueWithUnit("mile") { value -> value.div(1609.344.toRawType()) }
+val Length.inch get() = valueWithUnit("in") { value -> value.divideBy(0.0254.toRawType()) }
+val Length.ft get() = valueWithUnit("ft") { value -> value.divideBy(0.3048.toRawType()) }
+val Length.mile get() = valueWithUnit("mile") { value -> value.divideBy(1609.344.toRawType()) }

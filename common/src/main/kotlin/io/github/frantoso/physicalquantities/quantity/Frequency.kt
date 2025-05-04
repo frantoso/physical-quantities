@@ -7,6 +7,7 @@ import io.github.frantoso.physicalquantities.core.SimpleQuantity
 import io.github.frantoso.physicalquantities.core.ValueWithUnit
 import io.github.frantoso.physicalquantities.core.valueWithUnit
 import io.github.frantoso.physicalquantities.utils.RawType
+import io.github.frantoso.physicalquantities.utils.divideBy
 import io.github.frantoso.physicalquantities.utils.toRawType
 
 /**
@@ -68,7 +69,7 @@ val Number.Hz: Frequency get() = Frequency.fromHertz(this)
 /**
  * Converts a number holding a rpm value to a [Frequency] instance.
  */
-val Number.rpm: Frequency get() = Frequency.fromHertz(this.toRawType().div(60.toRawType()))
+val Number.rpm: Frequency get() = Frequency.fromHertz(this.toRawType().divideBy(60.toRawType()))
 
 /**
  * Creates a pair of a value and associated unit from a scaled frequency quantity and 'Hz'.

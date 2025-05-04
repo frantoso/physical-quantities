@@ -7,6 +7,7 @@ import io.github.frantoso.physicalquantities.core.SimpleQuantity
 import io.github.frantoso.physicalquantities.core.ValueWithUnit
 import io.github.frantoso.physicalquantities.core.valueWithUnit
 import io.github.frantoso.physicalquantities.utils.RawType
+import io.github.frantoso.physicalquantities.utils.divideBy
 import io.github.frantoso.physicalquantities.utils.toRawType
 
 /**
@@ -73,11 +74,11 @@ val Number.Wh: Energy get() = Energy.fromJoule(toRawType().times(3_600.toRawType
  */
 val ScaledQuantity<Energy>.J get() = valueWithUnit(this, Energy.BASE_SYMBOL)
 val ScaledQuantity<Energy>.Ws get() = valueWithUnit(this, "Ws")
-val ScaledQuantity<Energy>.Wh get() = valueWithUnit(this, "Wh") { value -> value.div(3_600.toRawType()) }
+val ScaledQuantity<Energy>.Wh get() = valueWithUnit(this, "Wh") { value -> value.divideBy(3_600.toRawType()) }
 
 /**
  * Creates a pair of a value and associated unit from a non-scaled energy quantity and the unit.
  */
 val Energy.J get() = valueWithUnit(Energy.BASE_SYMBOL)
 val Energy.Ws get() = valueWithUnit("Ws")
-val Energy.Wh get() = valueWithUnit("Wh") { value -> value.div(3_600.toRawType()) }
+val Energy.Wh get() = valueWithUnit("Wh") { value -> value.divideBy(3_600.toRawType()) }

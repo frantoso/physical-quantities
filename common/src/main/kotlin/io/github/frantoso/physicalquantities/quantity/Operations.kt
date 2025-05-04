@@ -28,3 +28,21 @@ operator fun Energy.div(duration: Duration): Power = joule.divideBy(duration.toD
  * Computes a [Duration] from this [Energy] and the given [Power].
  */
 operator fun Energy.div(power: Power): Duration = joule.divideBy(power.watt).toDouble().seconds
+
+// **** Concentration related calculations
+
+/**
+ * Computes a [MolarConcentration] from this [AmountOfSubstance] and the given [Volume].
+ */
+operator fun AmountOfSubstance.div(volume: Volume): MolarConcentration = mole.divideBy(volume.cubicMeter.toRawType()).molPerM3
+
+/**
+ * Computes an [AmountOfSubstance] from this [MolarConcentration] and the given [Volume].
+ */
+operator fun MolarConcentration.times(volume: Volume): AmountOfSubstance = molePerCubicMeters.times(volume.cubicMeter.toRawType()).mol
+
+/**
+ * Computes a [Volume] from this [AmountOfSubstance] and the given [MolarConcentration].
+ */
+operator fun AmountOfSubstance.div(concentration: MolarConcentration): Volume =
+    mole.divideBy(concentration.molePerCubicMeters.toRawType()).m3

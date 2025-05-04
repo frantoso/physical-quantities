@@ -1,9 +1,9 @@
-package io.github.frantoso.physicalquantities.electrical
+package io.github.frantoso.physicalquantities.quantity
 
 import io.github.frantoso.physicalquantities.core.ValueWithUnit
 import io.github.frantoso.physicalquantities.core._m
 import io.github.frantoso.physicalquantities.utils.toRawType
-import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions
 import kotlin.test.Test
 
 class PowerTest {
@@ -11,21 +11,21 @@ class PowerTest {
     fun `test initialisation`() {
         val power = Power.fromWatt(24)
 
-        assertThat(power.watt).isEqualTo(24.toRawType())
+        Assertions.assertThat(power.watt).isEqualTo(24.toRawType())
     }
 
     @Test
     fun `test initialisation from literal`() {
         val power = 24.W
 
-        assertThat(power.watt).isEqualTo(24.toRawType())
+        Assertions.assertThat(power.watt).isEqualTo(24.toRawType())
     }
 
     @Test
     fun `test createFromValue`() {
         val power = -(24.W) // base class calls createFromValue()
 
-        assertThat(power.watt).isEqualTo((-24).toRawType())
+        Assertions.assertThat(power.watt).isEqualTo((-24).toRawType())
     }
 
     @Test
@@ -34,7 +34,7 @@ class PowerTest {
 
         val result = power.W
 
-        assertThat(result).isEqualTo(ValueWithUnit(32.0, "", "W"))
+        Assertions.assertThat(result).isEqualTo(ValueWithUnit(32.0, "", "W"))
     }
 
     @Test
@@ -43,7 +43,7 @@ class PowerTest {
 
         val result = power._m.W
 
-        assertThat(result).isEqualTo(ValueWithUnit(42000.0, "m", "W"))
+        Assertions.assertThat(result).isEqualTo(ValueWithUnit(42000.0, "m", "W"))
     }
 
     @Test
@@ -51,6 +51,6 @@ class PowerTest {
         val input = ValueWithUnit(2.3, "m", "W")
         val result = Power.fromValueWithUnit(input)
 
-        assertThat(result).isEqualTo(2.3._m.W)
+        Assertions.assertThat(result).isEqualTo(2.3._m.W)
     }
 }

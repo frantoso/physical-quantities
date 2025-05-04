@@ -1,10 +1,10 @@
-package io.github.frantoso.physicalquantities.electrical
+package io.github.frantoso.physicalquantities.quantity
 
 import io.github.frantoso.physicalquantities.core.ValueWithUnit
 import io.github.frantoso.physicalquantities.core._M
 import io.github.frantoso.physicalquantities.core._m
 import io.github.frantoso.physicalquantities.utils.toRawType
-import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions
 import kotlin.test.Test
 
 class FrequencyTest {
@@ -12,21 +12,21 @@ class FrequencyTest {
     fun `test initialisation`() {
         val frequency = Frequency.fromHertz(24)
 
-        assertThat(frequency.hertz).isEqualTo(24.toRawType())
+        Assertions.assertThat(frequency.hertz).isEqualTo(24.toRawType())
     }
 
     @Test
     fun `test initialisation from literal`() {
         val frequency = 24.Hz
 
-        assertThat(frequency.hertz).isEqualTo(24.toRawType())
+        Assertions.assertThat(frequency.hertz).isEqualTo(24.toRawType())
     }
 
     @Test
     fun `test createFromValue`() {
         val frequency = -(24.Hz) // base class calls createFromValue()
 
-        assertThat(frequency.hertz).isEqualTo((-24).toRawType())
+        Assertions.assertThat(frequency.hertz).isEqualTo((-24).toRawType())
     }
 
     @Test
@@ -35,7 +35,7 @@ class FrequencyTest {
 
         val result = frequency.Hz
 
-        assertThat(result).isEqualTo(ValueWithUnit(32.0, "", "Hz"))
+        Assertions.assertThat(result).isEqualTo(ValueWithUnit(32.0, "", "Hz"))
     }
 
     @Test
@@ -44,7 +44,7 @@ class FrequencyTest {
 
         val result = frequency._m.Hz
 
-        assertThat(result).isEqualTo(ValueWithUnit(42000.0, "m", "Hz"))
+        Assertions.assertThat(result).isEqualTo(ValueWithUnit(42000.0, "m", "Hz"))
     }
 
     @Test
@@ -52,6 +52,6 @@ class FrequencyTest {
         val input = ValueWithUnit(2.3, "M", "Hz")
         val result = Frequency.fromValueWithUnit(input)
 
-        assertThat(result).isEqualTo(2.3._M.Hz)
+        Assertions.assertThat(result).isEqualTo(2.3._M.Hz)
     }
 }

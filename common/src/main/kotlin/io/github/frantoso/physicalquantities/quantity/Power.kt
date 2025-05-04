@@ -1,4 +1,4 @@
-package io.github.frantoso.physicalquantities.electrical
+package io.github.frantoso.physicalquantities.quantity
 
 import io.github.frantoso.physicalquantities.core.NoSuchPrefixException
 import io.github.frantoso.physicalquantities.core.NoSuchUnitException

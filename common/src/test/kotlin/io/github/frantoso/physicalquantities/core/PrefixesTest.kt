@@ -1,9 +1,9 @@
 package io.github.frantoso.physicalquantities.core
 
-import io.github.frantoso.physicalquantities.electrical.Power
 import io.github.frantoso.physicalquantities.electrical.V
 import io.github.frantoso.physicalquantities.electrical.Voltage
-import io.github.frantoso.physicalquantities.electrical.W
+import io.github.frantoso.physicalquantities.quantity.Power
+import io.github.frantoso.physicalquantities.quantity.W
 import io.github.frantoso.physicalquantities.testUtils.STANDARD_OFFSET
 import io.github.frantoso.physicalquantities.utils.toRawType
 import org.assertj.core.api.Assertions.assertThat

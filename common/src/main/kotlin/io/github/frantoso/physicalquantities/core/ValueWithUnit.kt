@@ -37,6 +37,11 @@ class ValueWithUnit(
      * Returns a hash code value for the object.
      */
     override fun hashCode(): Int = value.hash xor symbolPrefix.hashCode() xor symbolUnit.hashCode()
+
+    /**
+     * Returns a string representation of the object.
+     */
+    override fun toString(): String = "$value $symbolPrefix $symbolUnit"
 }
 
 /**

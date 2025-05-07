@@ -1,5 +1,7 @@
 package io.github.frantoso.physicalquantities.electrical
 
+import io.github.frantoso.physicalquantities.quantity.Power
+import io.github.frantoso.physicalquantities.quantity.W
 import io.github.frantoso.physicalquantities.utils.divideBy
 import io.github.frantoso.physicalquantities.utils.toRawType
 import kotlin.time.Duration
@@ -49,28 +51,6 @@ operator fun Voltage.div(current: Current): Resistance = value.divideBy(current.
  * Computes a [Current] from this [Voltage] and the given [Resistance].
  */
 operator fun Voltage.div(resistance: Resistance): Current = value.divideBy(resistance.value).A
-
-// **** Energy related calculations
-
-/**
- * Computes an [Energy] from this [Power] and the given [Duration].
- */
-operator fun Power.times(duration: Duration): Energy = watt.times(duration.toDouble(DurationUnit.SECONDS).toRawType()).J
-
-/**
- * Computes an [Energy] from this [Duration] and the given [Power].
- */
-operator fun Duration.times(power: Power): Energy = toDouble(DurationUnit.SECONDS).toRawType().times(power.watt).J
-
-/**
- * Computes a [Power] from this [Energy] and the given [Duration].
- */
-operator fun Energy.div(duration: Duration): Power = joule.divideBy(duration.toDouble(DurationUnit.SECONDS).toRawType()).W
-
-/**
- * Computes a [Duration] from this [Energy] and the given [Power].
- */
-operator fun Energy.div(power: Power): Duration = joule.divideBy(power.watt).toDouble().seconds
 
 // **** Charge related calculations
 

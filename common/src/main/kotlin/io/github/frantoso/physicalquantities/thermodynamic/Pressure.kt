@@ -7,6 +7,7 @@ import io.github.frantoso.physicalquantities.core.SimpleQuantity
 import io.github.frantoso.physicalquantities.core.ValueWithUnit
 import io.github.frantoso.physicalquantities.core.valueWithUnit
 import io.github.frantoso.physicalquantities.utils.RawType
+import io.github.frantoso.physicalquantities.utils.divideBy
 import io.github.frantoso.physicalquantities.utils.toRawType
 
 /**
@@ -74,10 +75,10 @@ val Number.bar: Pressure get() = Pressure.fromPascal(this.toRawType().times(100_
  * Creates a pair of a value and associated unit from a scaled pressure quantity and the unit.
  */
 val ScaledQuantity<Pressure>.Pa get() = valueWithUnit(this, Pressure.BASE_SYMBOL)
-val ScaledQuantity<Pressure>.bar get() = valueWithUnit(this, "bar") { value -> value.div(100_000.toRawType()) }
+val ScaledQuantity<Pressure>.bar get() = valueWithUnit(this, "bar") { value -> value.divideBy(100_000.toRawType()) }
 
 /**
  * Creates a pair of a value and associated unit from a non-scaled pressure quantity and the unit.
  */
 val Pressure.Pa get() = valueWithUnit(Pressure.BASE_SYMBOL)
-val Pressure.bar get() = valueWithUnit("bar") { value -> value.div(100_000.toRawType()) }
+val Pressure.bar get() = valueWithUnit("bar") { value -> value.divideBy(100_000.toRawType()) }

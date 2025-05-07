@@ -1,5 +1,6 @@
 package io.github.frantoso.physicalquantities.electrical
 
+import io.github.frantoso.physicalquantities.quantity.W
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DynamicTest
 import org.junit.jupiter.api.TestFactory
@@ -30,21 +31,6 @@ class OperationsTest {
             { 7.O * 3.A } to 21.V,
             { 8.V / 2.A } to 4.O,
             { 21.V / 7.O } to 3.A,
-        ).mapIndexed { index, (functionToTest, expected) ->
-            DynamicTest.dynamicTest("${"%02d".format(index)} expected result: $expected") {
-                val result = functionToTest()
-
-                assertThat(result).isEqualTo(expected)
-            }
-        }
-
-    @TestFactory
-    fun `tests energy related operations`() =
-        listOf(
-            { 2.W * 4.seconds } to 8.J,
-            { 7.seconds * 3.W } to 21.J,
-            { 8.J / 2.seconds } to 4.W,
-            { 21.J / 7.W } to 3.seconds,
         ).mapIndexed { index, (functionToTest, expected) ->
             DynamicTest.dynamicTest("${"%02d".format(index)} expected result: $expected") {
                 val result = functionToTest()

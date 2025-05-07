@@ -8,8 +8,8 @@ import io.github.frantoso.physicalquantities.core.milli
 import io.github.frantoso.physicalquantities.electrical.A
 import io.github.frantoso.physicalquantities.electrical.Current
 import io.github.frantoso.physicalquantities.electrical.V
-import io.github.frantoso.physicalquantities.electrical.W
 import io.github.frantoso.physicalquantities.electrical.times
+import io.github.frantoso.physicalquantities.quantity.W
 import io.github.frantoso.physicalquantities.thermodynamic.Pa
 import io.github.frantoso.physicalquantities.thermodynamic.bar
 import org.assertj.core.api.Assertions.assertThat
@@ -18,7 +18,7 @@ import kotlin.test.Test
 /**
  * The README.md is generated when the tests run.
  */
-@Suppress("ktlint:standard:unary-op-spacing", "UNUSED_VARIABLE")
+@Suppress("ktlint:standard:unary-op-spacing", "UNUSED_VARIABLE", "unused")
 class ReadmeGenerator {
     @Test
     fun `generate readme for this project`() {

@@ -2,6 +2,7 @@ package io.github.frantoso.physicalquantities.electrical
 
 import io.github.frantoso.physicalquantities.core.NoSuchPrefixException
 import io.github.frantoso.physicalquantities.core.NoSuchUnitException
+import io.github.frantoso.physicalquantities.core.Registry
 import io.github.frantoso.physicalquantities.core.ScaledQuantity
 import io.github.frantoso.physicalquantities.core.SimpleQuantity
 import io.github.frantoso.physicalquantities.core.ValueWithUnit
@@ -51,7 +52,7 @@ class Charge private constructor(
         /**
          * Gets a list of creator functions to generate a new instance from a symbol.
          */
-        private val creators = listOf(CreatorInfo(BASE_SYMBOL) { value -> value.C })
+        private val creators = Registry.add(listOf(CreatorInfo(BASE_SYMBOL) { value -> value.C }))
     }
 }
 

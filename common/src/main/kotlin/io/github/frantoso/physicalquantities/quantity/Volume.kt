@@ -69,7 +69,7 @@ val Number.m3: Volume get() = Volume.fromCubicMeter(this)
 /**
  * Converts a number holding a Liter value to a [Volume] instance.
  */
-val Number.l: Volume get() = Volume.fromCubicMeter(this.toRawType().divideBy(1000.toRawType()))
+val Number.l: Volume get() = Volume.fromCubicMeter(toRawType().divideBy(1000.toRawType()))
 
 /**
  * Creates a pair of a value and associated unit from a scaled volume quantity and 'l'.

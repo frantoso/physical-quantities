@@ -69,7 +69,7 @@ val Number.Hz: Frequency get() = Frequency.fromHertz(this)
 /**
  * Converts a number holding a rpm value to a [Frequency] instance.
  */
-val Number.rpm: Frequency get() = Frequency.fromHertz(this.toRawType().divideBy(60.toRawType()))
+val Number.rpm: Frequency get() = Frequency.fromHertz(toRawType().divideBy(60.toRawType()))
 
 /**
  * Creates a pair of a value and associated unit from a scaled frequency quantity and 'Hz'.

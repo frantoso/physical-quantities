@@ -70,12 +70,12 @@ val Number.molPerM3: MolarConcentration get() = MolarConcentration.fromMolePerCu
 /**
  * Converts a number holding a mol per liter value to a [MolarConcentration] instance.
  */
-val Number.molPerL: MolarConcentration get() = MolarConcentration.fromMolePerCubicMeters(this.toRawType().times(1000.toRawType()))
+val Number.molPerL: MolarConcentration get() = MolarConcentration.fromMolePerCubicMeters(toRawType().times(1000.toRawType()))
 
 /**
  * Converts a number holding a molar value to a [MolarConcentration] instance.
  */
-val Number.M: MolarConcentration get() = MolarConcentration.fromMolePerCubicMeters(this.toRawType().times(1000.toRawType()))
+val Number.M: MolarConcentration get() = MolarConcentration.fromMolePerCubicMeters(toRawType().times(1000.toRawType()))
 
 /**
  * Creates a pair of a value and associated unit from a scaled molar concentration quantity and 'mol/m³'.

@@ -11,7 +11,7 @@ import kotlin.time.DurationUnit
 // **** Power related calculations
 
 /**
- * Computes a [io.github.frantoso.physicalquantities.quantity.Power] from this [Voltage] and the given [Current].
+ * Computes a [Power] from this [Voltage] and the given [Current].
  */
 operator fun Voltage.times(current: Current): Power = value.times(current.value).W
 

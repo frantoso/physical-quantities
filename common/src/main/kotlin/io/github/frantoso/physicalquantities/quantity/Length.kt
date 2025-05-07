@@ -71,17 +71,17 @@ val Number.m: Length get() = Length.fromMeter(this)
 /**
  * Converts a number holding an inch value to a [Length] instance.
  */
-val Number.inch: Length get() = Length.fromMeter(this.toRawType().times(0.0254.toRawType()))
+val Number.inch: Length get() = Length.fromMeter(toRawType().times(0.0254.toRawType()))
 
 /**
  * Converts a number holding a foot value to a [Length] instance.
  */
-val Number.ft: Length get() = Length.fromMeter(this.toRawType().times(0.3048.toRawType()))
+val Number.ft: Length get() = Length.fromMeter(toRawType().times(0.3048.toRawType()))
 
 /**
  * Converts a number holding a mile value to a [Length] instance.
  */
-val Number.mile: Length get() = Length.fromMeter(this.toRawType().times(1609.344.toRawType()))
+val Number.mile: Length get() = Length.fromMeter(toRawType().times(1609.344.toRawType()))
 
 /**
  * Creates a pair of a value and associated unit from a scaled length quantity and 'm'.

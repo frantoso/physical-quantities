@@ -9,11 +9,15 @@ import kotlin.test.Test
 class ScaledQuantityTest {
     class TestQuantity(
         value: Number,
-    ) : QuantityBase(value)
+    ) : QuantityBase(value) {
+        override fun copy(): QuantityBase = TestQuantity(value)
+    }
 
     class OtherTestQuantity(
         value: Number,
-    ) : QuantityBase(value)
+    ) : QuantityBase(value) {
+        override fun copy(): QuantityBase = OtherTestQuantity(value)
+    }
 
     @Test
     fun `tests initialization`() {

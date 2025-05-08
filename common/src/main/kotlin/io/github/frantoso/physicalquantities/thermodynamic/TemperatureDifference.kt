@@ -2,6 +2,7 @@
 
 package io.github.frantoso.physicalquantities.thermodynamic
 
+import io.github.frantoso.physicalquantities.core.QuantityBase
 import io.github.frantoso.physicalquantities.core.SimpleDifference
 import io.github.frantoso.physicalquantities.utils.RawType
 
@@ -17,6 +18,12 @@ class TemperatureDifference private constructor(
      * Gets the raw value in degrees (°).
      */
     val degrees: RawType get() = value
+
+    /**
+     * Copies this object.
+     * @return Returns a copy of this object.
+     */
+    override fun copy(): QuantityBase = TemperatureDifference(value)
 
     companion object {
         /**

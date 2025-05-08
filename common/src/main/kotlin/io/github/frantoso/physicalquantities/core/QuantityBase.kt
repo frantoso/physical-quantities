@@ -57,4 +57,10 @@ abstract class QuantityBase protected constructor(
      *   - `NaN.sign` is `NaN`
      */
     val sign: Int = this.value.sgn
+
+    /**
+     * Copies this object.
+     * @return Returns a copy of this object.
+     */
+    abstract fun copy(): QuantityBase
 }

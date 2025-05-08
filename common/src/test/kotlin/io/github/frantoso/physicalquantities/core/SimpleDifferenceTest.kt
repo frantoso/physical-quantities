@@ -8,7 +8,9 @@ import kotlin.test.Test
 class SimpleDifferenceTest {
     class TestDiff(
         value: Number,
-    ) : SimpleDifference<TestDiff>(value, "x")
+    ) : SimpleDifference<TestDiff>(value, "x") {
+        override fun copy(): QuantityBase = TestDiff(value)
+    }
 
     @Test
     fun `test initialisation`() {

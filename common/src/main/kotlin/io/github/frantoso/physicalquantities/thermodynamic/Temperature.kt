@@ -54,7 +54,7 @@ class Temperature private constructor(
         /**
          * Gets a list of creator functions to generate a new instance from a symbol.
          */
-        private val creators =
+        val creators =
             listOf(
                 CreatorInfo(BASE_SYMBOL) { value -> value.K },
                 CreatorInfo("Celsius") { value -> value.Celsius },

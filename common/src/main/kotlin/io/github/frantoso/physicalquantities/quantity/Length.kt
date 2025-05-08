@@ -53,7 +53,7 @@ class Length private constructor(
         /**
          * Gets a list of creator functions to generate a new instance from a symbol.
          */
-        private val creators =
+        val creators =
             listOf(
                 CreatorInfo(BASE_SYMBOL) { value -> value.m },
                 CreatorInfo("in") { value -> value.inch },

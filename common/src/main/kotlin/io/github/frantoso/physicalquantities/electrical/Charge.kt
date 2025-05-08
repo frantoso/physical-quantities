@@ -51,7 +51,7 @@ class Charge private constructor(
         /**
          * Gets a list of creator functions to generate a new instance from a symbol.
          */
-        private val creators = listOf(CreatorInfo(BASE_SYMBOL) { value -> value.C })
+        val creators = listOf(CreatorInfo(BASE_SYMBOL) { value -> value.C })
     }
 }
 

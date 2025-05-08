@@ -86,6 +86,12 @@ abstract class SimpleQuantity<QuantityType : QuantityBase, DiffType : QuantityBa
      */
     protected abstract fun createFromValue(value: Number): QuantityType
 
+    /**
+     * Copies this object.
+     * @return Returns a copy of this object.
+     */
+    override fun copy(): QuantityType = createFromValue(value)
+
     companion object {
         /**
          * Conversion function to get a quantity from a [ValueWithUnit] instance.
@@ -98,7 +104,7 @@ abstract class SimpleQuantity<QuantityType : QuantityBase, DiffType : QuantityBa
          *  - [NoSuchUnitException] if there is no creator for the symbol found.
          */
         @JvmStatic
-        protected inline fun <reified T> fromValueWithUnit(
+        inline fun <reified T> fromValueWithUnit(
             input: ValueWithUnit,
             creators: List<CreatorInfo<T>>,
         ): T {

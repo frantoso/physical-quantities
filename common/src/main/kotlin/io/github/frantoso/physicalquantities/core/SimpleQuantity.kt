@@ -98,7 +98,7 @@ abstract class SimpleQuantity<QuantityType : QuantityBase, DiffType : QuantityBa
          *  - [NoSuchUnitException] if there is no creator for the symbol found.
          */
         @JvmStatic
-        protected inline fun <reified T> fromValueWithUnit(
+        inline fun <reified T> fromValueWithUnit(
             input: ValueWithUnit,
             creators: List<CreatorInfo<T>>,
         ): T {

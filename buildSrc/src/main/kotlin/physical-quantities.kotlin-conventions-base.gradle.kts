@@ -17,7 +17,7 @@ version = System.getenv("LIBRARY_VERSION") ?: project.findProperty("localLibrary
 dependencies {
     testImplementation(kotlin("test"))
     testImplementation("org.assertj:assertj-core:3.27.3")
-    testImplementation("io.mockk:mockk:1.14.0")
+    testImplementation("io.mockk:mockk:1.14.2")
 }
 
 repositories {

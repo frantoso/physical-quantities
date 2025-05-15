@@ -4,6 +4,7 @@ import io.github.frantoso.physicalquantities.electrical.A
 import io.github.frantoso.physicalquantities.electrical.C
 import io.github.frantoso.physicalquantities.electrical.O
 import io.github.frantoso.physicalquantities.electrical.V
+import io.github.frantoso.physicalquantities.nonquantity.sc
 import io.github.frantoso.physicalquantities.quantity.Hz
 import io.github.frantoso.physicalquantities.quantity.J
 import io.github.frantoso.physicalquantities.quantity.W
@@ -68,6 +69,12 @@ class RegistryTest {
             ValueWithUnit(200.3, "", "K") to 200.3.K,
             ValueWithUnit(2.3, "k", "Celsius") to 2.3._k.Celsius,
             ValueWithUnit(2.3, "m", "°C") to 2.3._m.Celsius,
+            ValueWithUnit(42, "", "sc") to 42.sc,
+            ValueWithUnit(42, "", "%") to 0.42.sc,
+            ValueWithUnit(42, "", "percent") to 0.42.sc,
+            ValueWithUnit(2.3, "k", "%") to 23.sc,
+            ValueWithUnit(1800, "", "‰") to 1.8.sc,
+            ValueWithUnit(1800, "", "permille") to 1.8.sc,
             ValueWithUnit(2.3, "m", "X") to null,
         ).mapIndexed { index, (input, expected) ->
             DynamicTest.dynamicTest("${"%02d".format(index)} expected result: $expected") {

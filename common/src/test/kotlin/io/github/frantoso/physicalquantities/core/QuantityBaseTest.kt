@@ -109,6 +109,15 @@ class QuantityBaseTest {
         assertThat(result2).isEqualTo("-20.6")
     }
 
+    @Test
+    fun `test rawValueNotForNormalUsage is equals to value`() {
+        val value1 = TestBaseQuantity(20.3)
+        val value2 = TestBaseQuantity(-20.6)
+
+        assertThat(value1.rawValueNotForNormalUsage).isEqualTo(value1.value)
+        assertThat(value2.rawValueNotForNormalUsage).isEqualTo(value2.value)
+    }
+
     @TestFactory
     fun `copies a quantity`() =
         listOf(

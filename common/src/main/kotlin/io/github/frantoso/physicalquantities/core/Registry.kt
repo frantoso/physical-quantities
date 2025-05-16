@@ -4,6 +4,7 @@ import io.github.frantoso.physicalquantities.electrical.Charge
 import io.github.frantoso.physicalquantities.electrical.Current
 import io.github.frantoso.physicalquantities.electrical.Resistance
 import io.github.frantoso.physicalquantities.electrical.Voltage
+import io.github.frantoso.physicalquantities.nonquantity.Scale
 import io.github.frantoso.physicalquantities.quantity.AmountOfSubstance
 import io.github.frantoso.physicalquantities.quantity.Energy
 import io.github.frantoso.physicalquantities.quantity.Frequency
@@ -39,5 +40,6 @@ object Registry {
             Volume.creators,
             Pressure.creators,
             Temperature.creators,
+            Scale.creators,
         )
 }

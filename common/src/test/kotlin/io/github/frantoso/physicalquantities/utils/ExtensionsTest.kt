@@ -1,10 +1,12 @@
 package io.github.frantoso.physicalquantities.utils
 
+import io.github.frantoso.physicalquantities.core.QuantityBase
 import io.github.frantoso.physicalquantities.electrical.A
 import io.github.frantoso.physicalquantities.electrical.V
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DynamicTest
 import org.junit.jupiter.api.TestFactory
+import kotlin.test.Test
 
 class ExtensionsTest {
     @TestFactory
@@ -47,4 +49,59 @@ class ExtensionsTest {
                 assertThat(result).isEqualTo(expected)
             }
         }
+
+    data class TestData(
+        val value: QuantityBase,
+        val min: QuantityBase?,
+        val max: QuantityBase?,
+    )
+
+    @TestFactory
+    fun `tests whether a quantity is inside a range`() =
+        listOf(
+            TestData(1.A, 0.8.A, 1.09.A) to true,
+            TestData(1.A, null, 1.09.A) to true,
+            TestData(1.A, 0.8.A, null) to true,
+            TestData(1.A, null, null) to true,
+            TestData(1.A, 1.8.A, 1.9.A) to false,
+            TestData(1.A, 0.8.A, 0.9.A) to false,
+            TestData(1.A, null, 0.9.A) to false,
+            TestData(1.A, 1.1.A, null) to false,
+            TestData(1.V, 0.8.A, 1.09.A) to false,
+            TestData(1.A, 0.8.V, 1.09.A) to false,
+            TestData(1.A, 0.8.A, 1.09.V) to false,
+        ).mapIndexed { index, (data, expected) ->
+            DynamicTest.dynamicTest(
+                "${"%02d".format(index)} - ${data.value} is ${if (expected) "" else "not "} inside ${data.min} and ${data.max}",
+            ) {
+                val result = data.value.isInRange(data.min, data.max)
+
+                assertThat(result).isEqualTo(expected)
+            }
+        }
+
+    @Test
+    fun `call isInRange with default values`() {
+        val result = 1.A.isInRange()
+
+        assertThat(result).isTrue
+    }
+
+    @Test
+    fun `call isInRange with default min value`() {
+        val result1 = 1.A.isInRange(max = 1.09.A)
+        val result2 = 1.A.isInRange(max = 0.09.A)
+
+        assertThat(result1).isTrue
+        assertThat(result2).isFalse
+    }
+
+    @Test
+    fun `call isInRange with default max value`() {
+        val result1 = 1.A.isInRange(min = 0.8.A)
+        val result2 = 1.A.isInRange(min = 1.8.A)
+
+        assertThat(result1).isTrue
+        assertThat(result2).isFalse
+    }
 }

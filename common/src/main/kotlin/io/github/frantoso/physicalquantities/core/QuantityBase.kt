@@ -22,6 +22,13 @@ abstract class QuantityBase protected constructor(
     internal val value: RawType = value.toRawType()
 
     /**
+     * Gets the raw value stored in this instance. Raw values unit is the reference unit of the quantity.
+     * This property is not intended for normal usage.
+     */
+    val rawValueNotForNormalUsage: RawType
+        get() = value
+
+    /**
      * Returns `true` if this instance is equal to [other]; `false` otherwise.
      */
     override fun equals(other: Any?): Boolean =

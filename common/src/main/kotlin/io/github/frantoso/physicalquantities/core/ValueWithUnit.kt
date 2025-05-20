@@ -42,6 +42,18 @@ class ValueWithUnit(
      * Returns a string representation of the object.
      */
     override fun toString(): String = "$value $symbolPrefix $symbolUnit"
+
+    /**
+     * Creates a copy of this instance with the provided values.
+     * @param newValue The new value to store in the copy (default: this.value).
+     * @param newSymbolPrefix The new symbol prefix to store in the copy (default: this.symbolPrefix).
+     * @param newSymbolUnit The new symbol unit to store in the copy (default: this.symbolUnit).
+     */
+    fun copy(
+        newValue: Number = this.value,
+        newSymbolPrefix: String = this.symbolPrefix,
+        newSymbolUnit: String = this.symbolUnit,
+    ) = ValueWithUnit(value = newValue, symbolPrefix = newSymbolPrefix, symbolUnit = newSymbolUnit)
 }
 
 /**

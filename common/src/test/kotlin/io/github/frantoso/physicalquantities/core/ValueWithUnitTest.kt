@@ -57,4 +57,17 @@ class ValueWithUnitTest {
 
         assertThat(hash1).isNotEqualTo(hash2)
     }
+
+    @TestFactory
+    fun `test copy`() =
+        listOf(
+            ValueWithUnit(42, "m", "V").copy() to ValueWithUnit(42, "m", "V"),
+            ValueWithUnit(42, "m", "V").copy(newValue = 43) to ValueWithUnit(43, "m", "V"),
+            ValueWithUnit(42, "m", "V").copy(newSymbolPrefix = "k") to ValueWithUnit(42, "k", "V"),
+            ValueWithUnit(42, "m", "V").copy(newSymbolUnit = "°C") to ValueWithUnit(42, "m", "°C"),
+        ).mapIndexed { index, (input, expected) ->
+            DynamicTest.dynamicTest("${"%02d".format(index)} - result is $expected") {
+                assertThat(input).isEqualTo(expected)
+            }
+        }
 }

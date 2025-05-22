@@ -69,7 +69,7 @@ val Number.m3s: FlowRate get() = FlowRate.fromCubicMetersPerSecond(this)
 /**
  * Converts a number holding an l/s value to a [FlowRate] instance.
  */
-val Number.ls: FlowRate get() = FlowRate.fromCubicMetersPerSecond(this.toRawType().divideBy(1000.toRawType()))
+val Number.ls: FlowRate get() = FlowRate.fromCubicMetersPerSecond(toRawType().divideBy(1000.toRawType()))
 
 /**
  * Creates a pair of a value and associated unit from a scaled flow rate quantity and 'm³/s'.

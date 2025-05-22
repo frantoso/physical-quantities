@@ -71,7 +71,7 @@ val Number.K: Temperature get() = Temperature.fromKelvin(this)
 /**
  * Converts a number holding a °Celsius value to a [Temperature] instance.
  */
-val Number.Celsius: Temperature get() = Temperature.fromKelvin(this.toRawType().plus(273.15.toRawType()))
+val Number.Celsius: Temperature get() = Temperature.fromKelvin(toRawType().plus(273.15.toRawType()))
 
 /**
  * Converts a number holding a °Celsius value to a [Temperature] instance.

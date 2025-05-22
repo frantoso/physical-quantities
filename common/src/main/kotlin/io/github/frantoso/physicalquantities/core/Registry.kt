@@ -5,8 +5,10 @@ import io.github.frantoso.physicalquantities.electrical.Current
 import io.github.frantoso.physicalquantities.electrical.Resistance
 import io.github.frantoso.physicalquantities.electrical.Voltage
 import io.github.frantoso.physicalquantities.nonquantity.Scale
+import io.github.frantoso.physicalquantities.quantity.Acidity
 import io.github.frantoso.physicalquantities.quantity.AmountOfSubstance
 import io.github.frantoso.physicalquantities.quantity.Energy
+import io.github.frantoso.physicalquantities.quantity.FlowRate
 import io.github.frantoso.physicalquantities.quantity.Frequency
 import io.github.frantoso.physicalquantities.quantity.Length
 import io.github.frantoso.physicalquantities.quantity.MolarConcentration
@@ -41,5 +43,7 @@ object Registry {
             Pressure.creators,
             Temperature.creators,
             Scale.creators,
+            FlowRate.creators,
+            Acidity.creators,
         )
 }

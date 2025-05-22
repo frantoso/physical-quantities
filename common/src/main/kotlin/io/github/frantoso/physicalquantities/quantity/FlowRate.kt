@@ -53,7 +53,11 @@ class FlowRate private constructor(
         /**
          * Gets a list of creator functions to generate a new instance from a symbol.
          */
-        val creators = listOf(CreatorInfo(BASE_SYMBOL) { value -> value.m3s })
+        val creators =
+            listOf(
+                CreatorInfo(BASE_SYMBOL) { value -> value.m3s },
+                CreatorInfo("l/s") { value -> value.ls },
+            )
     }
 }
 

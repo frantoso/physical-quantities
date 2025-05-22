@@ -11,10 +11,13 @@ import io.github.frantoso.physicalquantities.quantity.W
 import io.github.frantoso.physicalquantities.quantity.ft
 import io.github.frantoso.physicalquantities.quantity.inch
 import io.github.frantoso.physicalquantities.quantity.l
+import io.github.frantoso.physicalquantities.quantity.ls
 import io.github.frantoso.physicalquantities.quantity.m
+import io.github.frantoso.physicalquantities.quantity.m3s
 import io.github.frantoso.physicalquantities.quantity.mile
 import io.github.frantoso.physicalquantities.quantity.mol
 import io.github.frantoso.physicalquantities.quantity.molPerM3
+import io.github.frantoso.physicalquantities.quantity.pH
 import io.github.frantoso.physicalquantities.thermodynamic.Celsius
 import io.github.frantoso.physicalquantities.thermodynamic.K
 import io.github.frantoso.physicalquantities.thermodynamic.Pa
@@ -75,7 +78,16 @@ class RegistryTest {
             ValueWithUnit(2.3, "k", "%") to 23.sc,
             ValueWithUnit(1800, "", "‰") to 1.8.sc,
             ValueWithUnit(1800, "", "permille") to 1.8.sc,
+            ValueWithUnit(42, "", "m³/s") to 42.m3s,
+            ValueWithUnit(2.3, "k", "m³/s") to 2.3._k.m3s,
+            ValueWithUnit(1800, "m", "m³/s") to 1.8.m3s,
+            ValueWithUnit(42, "", "l/s") to 42._m.m3s,
+            ValueWithUnit(2.3, "k", "l/s") to 2.3.m3s,
+            ValueWithUnit(1800, "m", "l/s") to 1.8.ls,
             ValueWithUnit(2.3, "m", "X") to null,
+            ValueWithUnit(42, "", "pH") to 42.pH,
+            ValueWithUnit(2.3, "k", "pH") to 2.3._k.pH,
+            ValueWithUnit(1800, "m", "pH") to 1.8.pH,
         ).mapIndexed { index, (input, expected) ->
             DynamicTest.dynamicTest("${"%02d".format(index)} expected result: $expected") {
                 val result = Registry.fromValueWithUnit(input)

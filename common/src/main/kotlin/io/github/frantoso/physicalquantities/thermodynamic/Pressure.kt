@@ -69,7 +69,7 @@ val Number.Pa: Pressure get() = Pressure.fromPascal(this)
 /**
  * Converts a number holding a bar value to a [Pressure] instance.
  */
-val Number.bar: Pressure get() = Pressure.fromPascal(this.toRawType().times(100_000.toRawType()))
+val Number.bar: Pressure get() = Pressure.fromPascal(toRawType().times(100_000.toRawType()))
 
 /**
  * Creates a pair of a value and associated unit from a scaled pressure quantity and the unit.

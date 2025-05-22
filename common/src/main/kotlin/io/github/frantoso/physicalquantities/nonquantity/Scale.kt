@@ -72,12 +72,12 @@ val Number.sc: Scale get() = Scale.fromNumber(this)
 /**
  * Converts a percentage to a [Scale] instance.
  */
-val Number.percent: Scale get() = Scale.fromNumber(this.toRawType().divideBy(100.toRawType()))
+val Number.percent: Scale get() = Scale.fromNumber(toRawType().divideBy(100.toRawType()))
 
 /**
  * Converts a per mille to a [Scale] instance.
  */
-val Number.permille: Scale get() = Scale.fromNumber(this.toRawType().divideBy(1000.toRawType()))
+val Number.permille: Scale get() = Scale.fromNumber(toRawType().divideBy(1000.toRawType()))
 
 /**
  * Creates a pair of a value and associated unit from a scaled scale quantity and the unit.

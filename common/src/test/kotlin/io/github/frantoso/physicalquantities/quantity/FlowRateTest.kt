@@ -55,7 +55,7 @@ class FlowRateTest {
             ValueWithUnit(1800, "m", "l/s") to 1.8.ls,
             ValueWithUnit(60, "", "l/min") to 1.ls,
             ValueWithUnit(2.4, "k", "l/min") to 40.ls,
-            ValueWithUnit(1800, "m", "l/min") to 0.03.ls,
+            ValueWithUnit(180000, "m", "l/min") to 3.ls,
         ).mapIndexed { index, (input, expected) ->
             DynamicTest.dynamicTest("${"%02d".format(index)} expected result: $expected") {
                 val result = FlowRate.fromValueWithUnit(input)

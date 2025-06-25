@@ -37,4 +37,19 @@ class OperationsTest {
                 assertThat(result.equalsByPrecision(expected, 0.000000000001.toRawType())).isTrue
             }
         }
+
+    @TestFactory
+    fun `tests flow rate related operations`() =
+        listOf(
+            { 2.m3s * 4.seconds } to 8.m3,
+            { 7.seconds * 3.m3s } to 21.m3,
+            { 8.m3 / 2.seconds } to 4.m3s,
+            { 21.m3 / 7.m3s } to 3.seconds,
+        ).mapIndexed { index, (functionToTest, expected) ->
+            DynamicTest.dynamicTest("${"%02d".format(index)} expected result: $expected") {
+                val result = functionToTest()
+
+                assertThat(result).isEqualTo(expected)
+            }
+        }
 }

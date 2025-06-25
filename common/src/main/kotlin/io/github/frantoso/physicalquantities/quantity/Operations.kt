@@ -46,3 +46,25 @@ operator fun MolarConcentration.times(volume: Volume): AmountOfSubstance = moleP
  */
 operator fun AmountOfSubstance.div(concentration: MolarConcentration): Volume =
     mole.divideBy(concentration.molePerCubicMeters.toRawType()).m3
+
+// **** FlowRate related calculations
+
+/**
+ * Computes a [Volume] from this [FlowRate] and the given [Duration].
+ */
+operator fun FlowRate.times(duration: Duration): Volume = cubicMetersPerSecond.times(duration.toDouble(DurationUnit.SECONDS).toRawType()).m3
+
+/**
+ * Computes a [Volume] from this [Duration] and the given [FlowRate].
+ */
+operator fun Duration.times(flowRate: FlowRate): Volume = toDouble(DurationUnit.SECONDS).toRawType().times(flowRate.cubicMetersPerSecond).m3
+
+/**
+ * Computes a [FlowRate] from this [Volume] and the given [Duration].
+ */
+operator fun Volume.div(duration: Duration): FlowRate = cubicMeter.divideBy(duration.toDouble(DurationUnit.SECONDS).toRawType()).m3s
+
+/**
+ * Computes a [Duration] from this [Volume] and the given [FlowRate].
+ */
+operator fun Volume.div(flowRate: FlowRate): Duration = cubicMeter.divideBy(flowRate.cubicMetersPerSecond).toDouble().seconds

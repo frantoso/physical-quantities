@@ -57,6 +57,7 @@ class FlowRate private constructor(
             listOf(
                 CreatorInfo(BASE_SYMBOL) { value -> value.m3s },
                 CreatorInfo("l/s") { value -> value.ls },
+                CreatorInfo("l/min") { value -> value.lmin },
             )
     }
 }
@@ -72,13 +73,20 @@ val Number.m3s: FlowRate get() = FlowRate.fromCubicMetersPerSecond(this)
 val Number.ls: FlowRate get() = FlowRate.fromCubicMetersPerSecond(toRawType().divideBy(1000.toRawType()))
 
 /**
+ * Converts a number holding an l/min value to a [FlowRate] instance.
+ */
+val Number.lmin: FlowRate get() = FlowRate.fromCubicMetersPerSecond(toRawType().divideBy(60000.toRawType()))
+
+/**
  * Creates a pair of a value and associated unit from a scaled flow rate quantity and 'm³/s'.
  */
 val ScaledQuantity<FlowRate>.m3s get() = valueWithUnit(this, FlowRate.BASE_SYMBOL)
 val ScaledQuantity<FlowRate>.ls get() = valueWithUnit(this, "l/s") { value -> value.times(1000.toRawType()) }
+val ScaledQuantity<FlowRate>.lmin get() = valueWithUnit(this, "l/min") { value -> value.times(60000.toRawType()) }
 
 /**
  * Creates a pair of a value and associated unit from a non-scaled flow rate quantity and 'm³/s'.
  */
 val FlowRate.m3s get() = valueWithUnit(FlowRate.BASE_SYMBOL)
 val FlowRate.ls get() = valueWithUnit("l/s") { value -> value.times(1000.toRawType()) }
+val FlowRate.lmin get() = valueWithUnit("l/min") { value -> value.times(60000.toRawType()) }

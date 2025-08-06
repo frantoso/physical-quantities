@@ -13,6 +13,7 @@ import io.github.frantoso.physicalquantities.quantity.Frequency
 import io.github.frantoso.physicalquantities.quantity.Length
 import io.github.frantoso.physicalquantities.quantity.MolarConcentration
 import io.github.frantoso.physicalquantities.quantity.Power
+import io.github.frantoso.physicalquantities.quantity.Velocity
 import io.github.frantoso.physicalquantities.quantity.Volume
 import io.github.frantoso.physicalquantities.thermodynamic.Pressure
 import io.github.frantoso.physicalquantities.thermodynamic.Temperature
@@ -45,5 +46,6 @@ object Registry {
             Scale.creators,
             FlowRate.creators,
             Acidity.creators,
+            Velocity.creators,
         )
 }

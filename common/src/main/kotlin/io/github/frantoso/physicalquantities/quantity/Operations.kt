@@ -68,3 +68,25 @@ operator fun Volume.div(duration: Duration): FlowRate = cubicMeter.divideBy(dura
  * Computes a [Duration] from this [Volume] and the given [FlowRate].
  */
 operator fun Volume.div(flowRate: FlowRate): Duration = cubicMeter.divideBy(flowRate.cubicMetersPerSecond).toDouble().seconds
+
+// **** Velocity related calculations
+
+/**
+ * Computes a [Length] from this [Velocity] and the given [Duration].
+ */
+operator fun Velocity.times(duration: Duration): Length = metersPerSecond.times(duration.toDouble(DurationUnit.SECONDS).toRawType()).m
+
+/**
+ * Computes a [Length] from this [Duration] and the given [Velocity].
+ */
+operator fun Duration.times(velocity: Velocity): Length = toDouble(DurationUnit.SECONDS).toRawType().times(velocity.metersPerSecond).m
+
+/**
+ * Computes a [Velocity] from this [Length] and the given [Duration].
+ */
+operator fun Length.div(duration: Duration): Velocity = meter.divideBy(duration.toDouble(DurationUnit.SECONDS).toRawType()).mPerS
+
+/**
+ * Computes a [Duration] from this [Length] and the given [Velocity].
+ */
+operator fun Length.div(velocity: Velocity): Duration = meter.divideBy(velocity.metersPerSecond).toDouble().seconds

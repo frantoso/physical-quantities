@@ -52,4 +52,19 @@ class OperationsTest {
                 assertThat(result).isEqualTo(expected)
             }
         }
+
+    @TestFactory
+    fun `tests velocity related operations`() =
+        listOf(
+            { 2.mPerS * 4.seconds } to 8.m,
+            { 7.seconds * 3.mPerS } to 21.m,
+            { 8.m / 2.seconds } to 4.mPerS,
+            { 21.m / 7.mPerS } to 3.seconds,
+        ).mapIndexed { index, (functionToTest, expected) ->
+            DynamicTest.dynamicTest("${"%02d".format(index)} expected result: $expected") {
+                val result = functionToTest()
+
+                assertThat(result).isEqualTo(expected)
+            }
+        }
 }

@@ -73,7 +73,7 @@ class VelocityTest {
             10.mPerS.mPerS to ValueWithUnit(10, "", "m/s"),
             42.mPerS._m.mPerS to ValueWithUnit(42000, "m", "m/s"),
             10.mPerS.kmPerH to ValueWithUnit(36, "", "km/h"),
-            42.mPerS._m.kmPerH to ValueWithUnit(151200, "m", "km/h"),
+            72.mPerS._m.kmPerH to ValueWithUnit(259200, "m", "km/h"),
             36.kmPerH.mPerS to ValueWithUnit(10, "", "m/s"),
             36.kmPerH._m.mPerS to ValueWithUnit(10000, "m", "m/s"),
             36.kmPerH.kmPerH to ValueWithUnit(36, "", "km/h"),

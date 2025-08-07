@@ -1,6 +1,5 @@
 
 plugins {
-    java
     kotlin("jvm")
     id("org.jmailen.kotlinter")
 }
@@ -15,4 +14,8 @@ dependencies {
     testImplementation(kotlin("test"))
     testImplementation("org.assertj:assertj-core:3.25.1")
     testImplementation("com.github.jillesvangurp:kotlin4example:1.1.6")
+}
+
+kotlin {
+    jvmToolchain(21)
 }

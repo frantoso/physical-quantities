@@ -28,13 +28,13 @@ import kotlin.test.Test
 class TestBaseQuantity(
     value: Number,
 ) : QuantityBase(value) {
-    override fun copy(): QuantityBase = TestBaseQuantity(value)
+    override fun copyQuantity(): QuantityBase = TestBaseQuantity(value)
 }
 
 class OtherTestBaseQuantity(
     value: Number,
 ) : QuantityBase(value) {
-    override fun copy(): QuantityBase = OtherTestBaseQuantity(value)
+    override fun copyQuantity(): QuantityBase = OtherTestBaseQuantity(value)
 }
 
 class QuantityBaseTest {
@@ -118,6 +118,32 @@ class QuantityBaseTest {
         assertThat(value2.rawValueNotForNormalUsage).isEqualTo(value2.value)
     }
 
+    @Test
+    fun `addMetaData does not replace existing`() {
+        val value = 25.A
+        val result1 = value.addMetaData("testKey", "testValue")
+
+        assertThat(value.metaData["testKey"]).isEqualTo("testValue")
+        assertThat(result1).isTrue
+
+        val result2 = value.addMetaData("testKey", "another testValue")
+
+        assertThat(value.metaData["testKey"]).isEqualTo("testValue")
+        assertThat(result2).isFalse
+    }
+
+    @Test
+    fun `setMetaData does replace existing`() {
+        val value = 25.A
+        value.setMetaData("testKey", "testValue")
+
+        assertThat(value.metaData["testKey"]).isEqualTo("testValue")
+
+        value.setMetaData("testKey", "another testValue")
+
+        assertThat(value.metaData["testKey"]).isEqualTo("another testValue")
+    }
+
     @TestFactory
     fun `copies a quantity`() =
         listOf(
@@ -161,6 +187,24 @@ class QuantityBaseTest {
 
                 assertThat(result).isEqualTo(input)
                 assertThat(result).isNotSameAs(input)
+            }
+        }
+
+    @TestFactory
+    fun `copies a quantity with meta data`() =
+        listOf(
+            2.3._m.C,
+            2.3._k.mol,
+            2.3._M.Hz,
+        ).mapIndexed { index, input ->
+            DynamicTest.dynamicTest("${"%02d".format(index)} expected result: $input") {
+                input.addMetaData(index, "testMetaData")
+
+                val result = input.copy()
+
+                assertThat(result).isEqualTo(input)
+                assertThat(result).isNotSameAs(input)
+                assertThat(result.metaData[index]).isEqualTo("testMetaData")
             }
         }
 }

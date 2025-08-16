@@ -66,8 +66,63 @@ abstract class QuantityBase protected constructor(
     val sign: Int = this.value.sgn
 
     /**
+     * Stores metadata associated with this quantity.
+     * This metadata can be used to store additional information about the quantity,
+     * such as measurement conditions, source, or any other relevant data.
+     */
+    private val metaDataStore: MutableMap<Any, Any> = mutableMapOf()
+
+    /**
+     * Gets the metadata associated with this quantity.
+     */
+    val metaData: Map<Any, Any>
+        get() = metaDataStore
+
+    /**
+     * Sets metadata for this quantity.
+     * If the key already exists, it will be overwritten.
+     * @param key The key to associate with the value.
+     * @param value The value to associate with the key.
+     */
+    fun setMetaData(
+        key: Any,
+        value: Any,
+    ) {
+        metaDataStore[key] = value
+    }
+
+    /**
+     * Adds metadata for this quantity if the key does not already exist.
+     * If the key already exists, it will not overwrite the existing value.
+     * @param key The key to associate with the value.
+     * @param value The value to associate with the key.
+     * @return Returns `true` if the metadata was added, `false` if the key already exists.
+     */
+    fun addMetaData(
+        key: Any,
+        value: Any,
+    ): Boolean {
+        if (key in metaDataStore) {
+            return false // Key already exists, do not overwrite
+        }
+
+        setMetaData(key, value)
+        return true
+    }
+
+    /**
      * Copies this object.
      * @return Returns a copy of this object.
      */
-    abstract fun copy(): QuantityBase
+    fun copy(): QuantityBase =
+        copyQuantity().let {
+            it.metaDataStore.putAll(metaData)
+            it
+        }
+
+    /**
+     * Copies this object.
+     * @return Returns a copy of this object.
+     */
+    protected abstract fun copyQuantity(): QuantityBase
 }

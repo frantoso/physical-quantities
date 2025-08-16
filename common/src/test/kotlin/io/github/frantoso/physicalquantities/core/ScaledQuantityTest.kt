@@ -10,13 +10,13 @@ class ScaledQuantityTest {
     class TestQuantity(
         value: Number,
     ) : QuantityBase(value) {
-        override fun copy(): QuantityBase = TestQuantity(value)
+        override fun copyQuantity(): QuantityBase = TestQuantity(value)
     }
 
     class OtherTestQuantity(
         value: Number,
     ) : QuantityBase(value) {
-        override fun copy(): QuantityBase = OtherTestQuantity(value)
+        override fun copyQuantity(): QuantityBase = OtherTestQuantity(value)
     }
 
     @Test

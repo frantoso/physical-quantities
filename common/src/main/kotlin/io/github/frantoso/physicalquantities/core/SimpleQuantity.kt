@@ -90,7 +90,7 @@ abstract class SimpleQuantity<QuantityType : QuantityBase, DiffType : QuantityBa
      * Copies this object.
      * @return Returns a copy of this object.
      */
-    override fun copy(): QuantityType = createFromValue(value)
+    override fun copyQuantity(): QuantityType = createFromValue(value)
 
     companion object {
         /**

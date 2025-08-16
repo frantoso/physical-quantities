@@ -1,7 +1,6 @@
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 
 plugins {
-    java
     kotlin("jvm")
     id("org.jetbrains.dokka")
     id("org.jetbrains.kotlinx.kover")

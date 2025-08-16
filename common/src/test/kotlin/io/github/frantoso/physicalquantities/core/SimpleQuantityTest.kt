@@ -25,7 +25,7 @@ class SimpleQuantityTest {
     class TestDiff(
         value: Number,
     ) : QuantityBase(value) {
-        override fun copy(): QuantityBase = TestDiff(value)
+        override fun copyQuantity(): QuantityBase = TestDiff(value)
     }
 
     class TestQuantityWithDiff(

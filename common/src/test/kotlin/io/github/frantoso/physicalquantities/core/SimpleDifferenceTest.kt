@@ -9,7 +9,7 @@ class SimpleDifferenceTest {
     class TestDiff(
         value: Number,
     ) : SimpleDifference<TestDiff>(value, "x") {
-        override fun copy(): QuantityBase = TestDiff(value)
+        override fun copyQuantity(): QuantityBase = TestDiff(value)
     }
 
     @Test

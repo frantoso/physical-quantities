@@ -23,7 +23,7 @@ class TemperatureDifference private constructor(
      * Copies this object.
      * @return Returns a copy of this object.
      */
-    override fun copy(): QuantityBase = TemperatureDifference(value)
+    override fun copyQuantity(): QuantityBase = TemperatureDifference(value)
 
     companion object {
         /**

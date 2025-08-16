@@ -13,7 +13,7 @@ The checks are performed during compilation.
 
 ### Gradle
 
-The library physical quantities is distributed via MavenCentral.
+The library physical quantities is distributed via Maven Central.
 
 There are two versions available. The difference lies in the data type used to store the values. One
 version supports Double and the other BigDecimal.
